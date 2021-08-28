@@ -39,6 +39,7 @@ This project will test your skills using Postman to explore the API and get the 
 - Tha ability to bookmark the movie.
 - The ability to search for a specific movie.
 - Once you click on a movie, it will move you to the singe page of that movie.
+- Use lazy loading functionality. 
 
 ### Single Movie Page
 
@@ -54,6 +55,7 @@ This project will test your skills using Postman to explore the API and get the 
 ### Actors Page
 - Display list of actors showing their name, and image same as movies page.
 - Once you click on an actor you go to their own page.
+- Use lazy loading functionality. 
 
 ### Single Actor Page
 - Display actor image
@@ -63,6 +65,9 @@ This project will test your skills using Postman to explore the API and get the 
 - Display the birth and death date if available.
 - Display the actor biography
 - Display a list of movies that the actor participated in.
+
+### Bookmarked Page
+- Display the movies the user bookmarked. Only if they are signed in.
 
 # Instructions: 
 
