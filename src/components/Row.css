@@ -1,8 +1,6 @@
 .poster_path {
-  /* display: flex; */
-  /* overflow-y: hidden; */
-  /* overflow-x: scroll; */
-  /* padding: 10px; */
+  display: flex;
+  padding: 10px;
   overflow: auto;
   white-space: nowrap;
 }
