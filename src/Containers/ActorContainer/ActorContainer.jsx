@@ -1,11 +1,11 @@
-import React from 'react'
-import Actor from '../../Components/Actor'
+import React from "react";
+import Actor from "../../Components/Actor/Actor";
 
 export default function ActorContainer() {
-   return (
-      <div>
-         Actor Container
-         <Actor/>
-      </div>
-   )
+  return (
+    <div>
+      Actor Container
+      <Actor />
+    </div>
+  );
 }
