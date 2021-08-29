@@ -1,6 +1,10 @@
 import React from "react";
 import SearchInput from "./components/SearchInput";
+import Header from "./containers/Header";
+// import MoviesContainer from "./containers/MoviesContainer";
 import useFetch from "./hooks/useFetch";
+import requests from "./reuqests/requests";
+import Row from "./components/Row";
 
 function App() {
   const { response, loading, setQuery, setLoading } = useFetch();
@@ -16,11 +20,20 @@ function App() {
 
   return (
     <div>
-      <h1>Hello World</h1>
+      <Header />
       <SearchInput
         queryHandler={queryHandler}
         loadingHandler={loadingHandler}
       />
+      <Row
+        title="Netflix Originals"
+        fetchUrl={requests.fetchNetflixOriginals}
+        isLarge
+      />
+      <Row title="Trending" fetchUrl={requests.fetchTrending} isLarge />
+      <Row title="Top Rated" fetchUrl={requests.fetchTopRated} isLarge />
+      <Row title="Action" fetchUrl={requests.fetchActionMovies} isLarge />
+      {/* <MoviesContainer response={response} loading={loading} /> */}
     </div>
   );
 }
