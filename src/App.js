@@ -1,9 +1,9 @@
 import React from "react";
 import SearchInput from "./components/SearchInput";
-// import MoviesContainer from "./containers/MoviesContainer";
 import useFetch from "./hooks/useFetch";
 import requests from "./reuqests/requests";
 import Row from "./components/Row";
+import Slider from "./containers/Slider";
 
 function App() {
   const { response, loading, setQuery, setLoading } = useFetch();
@@ -23,6 +23,7 @@ function App() {
         queryHandler={queryHandler}
         loadingHandler={loadingHandler}
       />
+      <Slider fetchUrl={requests.fetchComedyMovies} />
       <Row
         title="Netflix Originals"
         fetchUrl={requests.fetchNetflixOriginals}
