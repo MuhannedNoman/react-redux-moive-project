@@ -30,9 +30,24 @@ function App() {
         fetchUrl={requests.fetchNetflixOriginals}
         isLarge
       />
-      <Row title="Trending" fetchUrl={requests.fetchTrending} isLarge />
-      <Row title="Top Rated" fetchUrl={requests.fetchTopRated} isLarge />
-      <Row title="Action" fetchUrl={requests.fetchActionMovies} isLarge />
+      <Row
+        title="Trending"
+        fetchUrl={requests.fetchTrending}
+        isLarge
+        isLoading={loading}
+      />
+      <Row
+        title="Top Rated"
+        fetchUrl={requests.fetchTopRated}
+        isLarge
+        isLoading={loading}
+      />
+      <Row
+        title="Action"
+        fetchUrl={requests.fetchActionMovies}
+        isLarge
+        isLoading={loading}
+      />
       {/* <MoviesContainer response={response} loading={loading} /> */}
     </div>
   );

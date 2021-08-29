@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Row.css";
 import axios from "axios";
 import PropTypes from "prop-types";
+import { Skeleton } from "antd";
 
-function Row({ title, fetchUrl, isLarge }) {
+function Row({ title, fetchUrl, isLarge, isLoading }) {
   const [movie, setMovie] = useState([]);
   const posterBaseUrl = "https://image.tmdb.org/t/p/original";
 
@@ -11,6 +12,7 @@ function Row({ title, fetchUrl, isLarge }) {
     title: PropTypes.string.isRequired,
     fetchUrl: PropTypes.string.isRequired,
     isLarge: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
   };
 
   const instance = axios.create({
@@ -29,20 +31,25 @@ function Row({ title, fetchUrl, isLarge }) {
   return (
     <div className="row">
       <h1>{title}</h1>
-      <div className="poster_path">
-        <h1>
-          {movie.map((m) => (
-            <img
-              key={m.id}
-              className={`row_poster ${isLarge && "row_posterLarge"}`}
-              src={`${posterBaseUrl}${
-                isLarge ? m.poster_path : m.backdrop_path
-              }`}
-              alt={m.name}
-            />
-          ))}
-        </h1>
-      </div>
+      {isLoading ? (
+        <Skeleton />
+      ) : (
+        <div className="poster_path">
+          <h1>
+            {movie.map((m) => (
+              <img
+                width={200}
+                key={m.id}
+                className={`row_poster ${isLarge && "row_posterLarge"}`}
+                src={`${posterBaseUrl}${
+                  isLarge ? m.poster_path : m.backdrop_path
+                }`}
+                alt={m.name}
+              />
+            ))}
+          </h1>
+        </div>
+      )}
     </div>
   );
 }
