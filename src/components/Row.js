@@ -26,7 +26,9 @@ function Row({ title, fetchUrl, isLarge, isLoading }) {
     }
 
     fetchData();
-  }, [fetchUrl, instance]);
+    // I disabled the warning for this line. It will automatically add `instance` as dependency which causes memory leak
+    // eslint-disable-next-line
+  }, [fetchUrl]);
 
   return (
     <div className="row">
@@ -35,19 +37,17 @@ function Row({ title, fetchUrl, isLarge, isLoading }) {
         <Skeleton />
       ) : (
         <div className="poster_path">
-          <h1>
-            {movie.map((m) => (
-              <img
-                width={200}
-                key={m.id}
-                className={`row_poster ${isLarge && "row_posterLarge"}`}
-                src={`${posterBaseUrl}${
-                  isLarge ? m.poster_path : m.backdrop_path
-                }`}
-                alt={m.name}
-              />
-            ))}
-          </h1>
+          {movie.map((m) => (
+            <img
+              width={200}
+              key={m.id}
+              className={`row_poster ${isLarge && "row_posterLarge"}`}
+              src={`${posterBaseUrl}${
+                isLarge ? m.poster_path : m.backdrop_path
+              }`}
+              alt={m.name}
+            />
+          ))}
         </div>
       )}
     </div>
