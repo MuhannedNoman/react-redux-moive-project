@@ -1,6 +1,5 @@
 import React from "react";
 import SearchInput from "./components/SearchInput";
-import Header from "./containers/Header";
 // import MoviesContainer from "./containers/MoviesContainer";
 import useFetch from "./hooks/useFetch";
 import requests from "./reuqests/requests";
@@ -20,7 +19,6 @@ function App() {
 
   return (
     <div>
-      <Header />
       <SearchInput
         queryHandler={queryHandler}
         loadingHandler={loadingHandler}
@@ -48,7 +46,6 @@ function App() {
         isLarge
         isLoading={loading}
       />
-      {/* <MoviesContainer response={response} loading={loading} /> */}
     </div>
   );
 }
