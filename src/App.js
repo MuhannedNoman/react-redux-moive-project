@@ -4,7 +4,7 @@ import React from "react";
 import ActorContainer from "./Containers/ActorContainer/ActorContainer";
 import BookmarkContainer from "./Containers/BookmarkContainer/BookmarkContainer";
 import FooterContainer from "./Containers/FooterContainer/FooterContainer";
-import HeaderContainer from "./Containers/HeaderContainer/HeaderContainer";
+import NavBarContainer from "./Containers/NavBarContainer/NavBarContainer";
 import HomeContainer from "./Containers/HomeContainer/HomeContainer";
 import MoviesContainer from "./Containers/MoviesContainer/MoviesContainer";
 import SingleActorContainer from "./Containers/SingleActorContainer/SingleActorContainer";
@@ -16,7 +16,7 @@ function App() {
       <ActorContainer />
       <BookmarkContainer />
       <FooterContainer />
-      <HeaderContainer />
+      <NavBarContainer />
       <HomeContainer />
       <MoviesContainer />
       <SingleActorContainer />

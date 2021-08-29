@@ -1,0 +1,22 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+// UI Colors
+$primary: #30124E;
+$secondary: #F7F7F9;
+$dark: #000000;
+$warn: #F61067;
+$greenColor: #B3C89D;
+
+// Text Colors
+$textWhite: #FFFFFF;
+$textBlack: #000000;
+
+
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+$mainFontFamily: "Roboto", sans-serif;
+
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+$secondaryFontFamily: "Caveat", cursive;
