@@ -32,7 +32,7 @@ function Row({ title, fetchUrl, isLarge, isLoading }) {
 
   return (
     <div className="row">
-      <h1>{title}</h1>
+      <h1 style={{ color: "white" }}>{title}</h1>
       {isLoading ? (
         <Skeleton />
       ) : (
