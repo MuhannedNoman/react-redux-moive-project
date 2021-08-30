@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Row.css";
 import axios from "axios";
 import PropTypes from "prop-types";
-import { Skeleton } from "antd";
+import { Skeleton, Progress } from "antd";
 
 function Row({ title, fetchUrl, isLarge, isLoading }) {
   const [movie, setMovie] = useState([]);
@@ -38,15 +38,30 @@ function Row({ title, fetchUrl, isLarge, isLoading }) {
       ) : (
         <div className="poster_path">
           {movie.map((m) => (
-            <img
-              width={200}
-              key={m.id}
-              className={`row_poster ${isLarge && "row_posterLarge"}`}
-              src={`${posterBaseUrl}${
-                isLarge ? m.poster_path : m.backdrop_path
-              }`}
-              alt={m.name}
-            />
+            <div className="card_wrapper">
+              <img
+                key={m.id}
+                className={`row_poster ${isLarge && "row_posterLarge"}`}
+                src={`${posterBaseUrl}${
+                  isLarge ? m.poster_path : m.backdrop_path
+                }`}
+                alt={m.name}
+              />
+              <Progress
+                strokeColor={m.vote_average >= 8 ? "green" : "red"}
+                style={{
+                  position: "absolute",
+                  bottom: "0",
+                  left: "0",
+                  zIndex: "100",
+                  background: "white",
+                  borderRadius: "0 100px 100px 100px",
+                }}
+                type="circle"
+                percent={m.vote_average * 10}
+                width={40}
+              />
+            </div>
           ))}
         </div>
       )}
