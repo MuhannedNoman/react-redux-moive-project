@@ -11,7 +11,7 @@ const TrendingMovies = () => {
     return (
         <>
             <h1>Trending Movies</h1>
-            {trendingMovies.map(movie => <p key={movie.id}>{movie.title}</p>)}
+            {trendingMovies.results.map(movie => <p key={movie.id}>{movie.title}</p>)}
         </>
     );
 };

@@ -11,7 +11,7 @@ const PopularMovies = () => {
     return (
         <>
              <h1>Popular Movies</h1>
-            {popularMovies.map(movie => <p key={movie.id}>{movie.title}</p>)}
+            {popularMovies.results.map(movie => <p key={movie.id}>{movie.title}</p>)}
         </>
     );
 };
