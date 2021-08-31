@@ -12,7 +12,6 @@ This project will test your skills using Postman to explore the API and get the 
 ### Home Page
 - Show a section for the most popular movies.
 - Show a section for the most trending movies.
-- Show a section for the latest trailer.
 - Tha ability to bookmark the movies.
 ### Navbar 
 - Universal nav that is shown on every page of the website.
