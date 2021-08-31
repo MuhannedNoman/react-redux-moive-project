@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 // take in the url
 const useMoviesFetch = (url) => {
@@ -10,8 +9,10 @@ const useMoviesFetch = (url) => {
     useEffect(() => {
         try {
           const fetchData = async () => {
-            await axios.get(url).then((movies) => {
-              setData(movies.data);
+            await fetch(url)
+              .then(res => res.json())
+              .then((res) => {
+              setData(res);
               setIsLoaded(true);
             });
           };
