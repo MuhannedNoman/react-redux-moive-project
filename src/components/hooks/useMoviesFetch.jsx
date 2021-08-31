@@ -11,7 +11,7 @@ const useMoviesFetch = (url) => {
         try {
           const fetchData = async () => {
             await axios.get(url).then((movies) => {
-              setData(movies.data.results);
+              setData(movies.data);
               setIsLoaded(true);
             });
           };
