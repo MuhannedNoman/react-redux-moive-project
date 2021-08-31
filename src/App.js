@@ -1,30 +1,40 @@
-import React from "react";
-import SearchInput from "./components/SearchInput";
-import useFetch from "./hooks/useFetch";
-import requests from "./reuqests/requests";
-import Row from "./components/Row";
-import Slider from "./containers/Slider";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+// import SearchInput from "./components/SearchInput";
+// import useFetch from "./hooks/useFetch";
+// import requests from "./reuqests/requests";
+// import Row from "./components/Row";
+// import Slider from "./containers/Slider";
+import { fetchMovies } from "./api/imdbApi";
 
 function App() {
-  const { response, loading, setQuery, setLoading } = useFetch();
+  // const { loading, setQuery, setLoading } = useFetch();
+  // const { loading } = useFetch();
 
-  function queryHandler(q) {
-    setQuery(q);
-  }
-  function loadingHandler(l) {
-    setLoading(l);
-  }
+  // function queryHandler(q) {
+  //   setQuery(q);
+  // }
+  // function loadingHandler(l) {
+  //   setLoading(l);
+  // }
 
-  console.log(response, loading);
+  const dispatch = useDispatch();
+  const imdb = useSelector((state) => state.imdb);
+
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, [dispatch]);
+
+  console.log(imdb);
 
   return (
     <div>
-      <SearchInput
+      {/* <SearchInput
         queryHandler={queryHandler}
         loadingHandler={loadingHandler}
-      />
-      <Slider fetchUrl={requests.fetchComedyMovies} />
-      <Row
+      /> */}
+      {/* <Slider fetchUrl={requests.fetchComedyMovies} /> */}
+      {/* <Row
         title="Netflix Originals"
         fetchUrl={requests.fetchNetflixOriginals}
         isLarge
@@ -46,7 +56,7 @@ function App() {
         fetchUrl={requests.fetchActionMovies}
         isLarge
         isLoading={loading}
-      />
+      /> */}
     </div>
   );
 }
