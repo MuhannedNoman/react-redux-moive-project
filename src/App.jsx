@@ -1,21 +1,33 @@
 import React from 'react';
 import './App.css';
-// import { useDispatch, useSelector } from 'react-redux';
+import { Route, Redirect } from 'react-router-dom';
+import Routes from './components/Routes/Routes';
 
 // Components
 import Home from './components/Home';
+import SignIn from './components/SignIn';
+import MoviePage from './components/MoviePage';
+import SingleMoviePage from './components/SingleMoviePage';
+import ActorsPage from './components/ActorsPage';
+import SingleActorPage from './components/SingleActorPage';
 
 function App() {
-  // access dispatch function
-  // const dispatch = useDispatch();
-  // const count = useSelector(state => state.count);
-
+  const isLoggedIn = true;
   return (
-    <>
-     <Home/>
-   
-      {/* <button onClick={() => dispatch({type: 'inc'})} type='submit'>Increase</button> */}
-    </>
+    <Routes>
+      {
+        !isLoggedIn
+        ?<Redirect exact to='/signin' />
+        :<>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/signin' component={SignIn} />
+          <Route exact path='/mp' component={MoviePage} />
+          <Route exact path='/smp' component={SingleMoviePage} />
+          <Route exact path='/ap' component={ActorsPage} />
+          <Route exact path='/sap' component={SingleActorPage} />
+        </>
+      }
+    </Routes>
   );
 }
 
