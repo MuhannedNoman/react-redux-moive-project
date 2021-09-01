@@ -4,6 +4,7 @@ import useFetch from "./hooks/useFetch";
 import requests from "./reuqests/requests";
 import Row from "./components/Row";
 import Slider from "./containers/Slider";
+import Navbar from "./components/Navbar";
 
 function App() {
   const { response, loading, setQuery, setLoading } = useFetch();
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <div>
+      <Navbar />
       <SearchInput
         queryHandler={queryHandler}
         loadingHandler={loadingHandler}
