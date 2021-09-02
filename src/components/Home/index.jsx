@@ -9,7 +9,7 @@ const Home = () =>
   <>
          <PopularMovies />
          <TrendingMovies/>
-</>
+  </>
 
     
 
