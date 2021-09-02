@@ -1,14 +1,27 @@
 import React from 'react';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import Movies from './pages/Movies';
+import Movie from './pages/Movie';
+import Actors from './pages/Actors';
+import Actor from './pages/Actor';
+import Bookmarks from './pages/Bookmarks';
 
 function App() {
 	return (
 		<div className="App">
-			<h1 className="text-primary">Bootstrap checked</h1>
-			<p>Centered text with Sass(checked)</p>
-			<Button variant="primary">React Bootstrap checked</Button>
+			<BrowserRouter>
+				<Switch>
+					<Route exact path="/homepage" component={HomePage} />
+					<Route exact path="/movies" component={Movies} />
+					<Route exact path="/movie/:id" component={Movie} />
+					<Route exact path="/actors" component={Actors} />
+					<Route exact path="/actor/:id" component={Actor} />
+					<Route exact path="/bookmarks" component={Bookmarks} />
+				</Switch>
+			</BrowserRouter>
 		</div>
 	);
 }
