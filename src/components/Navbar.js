@@ -17,16 +17,27 @@ function Navbar() {
   };
   return (
     <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        background: "white",
-        padding: "0px 20px",
-        alignItems: "center",
-      }}
+    // style={{
+    //   display: "flex",
+    //   justifyContent: "space-between",
+    //   background: "black",
+    //   padding: "0px 20px",
+    //   alignItems: "center",
+    // }}
     >
-      <h1>MrTV</h1>
-      <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
+      {/* <h1 style={{ color: "white" }}>idkTV</h1> */}
+      <Menu
+        onClick={handleClick}
+        selectedKeys={[current]}
+        mode="horizontal"
+        style={{
+          background: "black",
+          color: "white",
+          border: "none",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <Menu.Item key="home" icon={<HomeTwoTone />}>
           Home
         </Menu.Item>
