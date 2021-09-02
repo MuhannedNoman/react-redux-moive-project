@@ -3,7 +3,7 @@ import React from "react";
 
 import ActorContainer from "./Containers/ActorContainer/ActorContainer";
 import BookmarkContainer from "./Containers/BookmarkContainer/BookmarkContainer";
-import FooterContainer from "./Containers/FooterContainer/FooterContainer";
+// import FooterContainer from "./Containers/FooterContainer/FooterContainer";
 import NavBarContainer from "./Containers/NavBarContainer/NavBarContainer";
 import HomeContainer from "./Containers/HomeContainer/HomeContainer";
 import MoviesContainer from "./Containers/MoviesContainer/MoviesContainer";
@@ -14,9 +14,8 @@ import { Route, Switch } from "react-router";
 function App() {
   return (
     <div>
-      {" "}
       <NavBarContainer />
-      <FooterContainer />
+      {/* <FooterContainer /> */}
       <Switch>
         <Route path="/actors">
           <ActorContainer />
@@ -28,13 +27,13 @@ function App() {
         <Route path="/" exact>
           <HomeContainer />
         </Route>
-        <Route exact path="/movies">
+        <Route exact path="/movies/:genreId">
           <MoviesContainer />
         </Route>
         <Route path="/actors/:actorId">
           <SingleActorContainer />
         </Route>
-        <Route path="/movies/:movieId">
+        <Route exact path="/movies/movie/:movieId">
           <SingleMovieContainer />
         </Route>
         <Route path="*">
