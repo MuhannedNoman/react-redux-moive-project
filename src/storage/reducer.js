@@ -1,5 +1,4 @@
 export function setUser(user){
-  console.log("user",user)
   return {
     type: 'user/add',
     payload: user
