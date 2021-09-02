@@ -1,0 +1,104 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const trendingMovies = createAsyncThunk(
+  "movies/trendingMovies",
+  async () => {
+    return axios
+      .get(
+        "https://api.themoviedb.org/3/trending/movie/day?api_key=e8fe6c13def75cda44726ea251c4fb8c"
+      )
+      .then((response) => {
+        return response.data;
+      });
+  }
+);
+export const popularMovies = createAsyncThunk(
+  "movies/popularMovies",
+  async () => {
+    return axios
+      .get(
+        " https://api.themoviedb.org/3/movie/popular?api_key=e8fe6c13def75cda44726ea251c4fb8c&language=en-US"
+      )
+      .then((response) => {
+        return response.data;
+      });
+  }
+);
+export const movieActors = createAsyncThunk(
+  "movies/movieActors",
+  async (id) => {
+    return axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=e8fe6c13def75cda44726ea251c4fb8c&language=en-US`
+      )
+      .then((response) => {
+        return response.data;
+      });
+  }
+);
+export const movieDetails = createAsyncThunk(
+  "movies/movieDetails",
+  async (id) => {
+    return axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=e8fe6c13def75cda44726ea251c4fb8c&language=en-US`
+      )
+      .then((response) => {
+        return response.data;
+      });
+  }
+);
+
+const movies = createSlice({
+  name: "movies",
+  initialState: {
+    popular: { status: "", list: [] },
+    trending: { status: "", list: [] },
+    movieActors: { status: "", list: [] },
+    movieDetails: { status: "", list: [] },
+  },
+  extraReducers: {
+    [trendingMovies.pending]: (state) => {
+      state.trending.status = "loading";
+    },
+    [trendingMovies.fulfilled]: (state, action) => {
+      state.trending.status = "success";
+      state.trending.list = action.payload.results;
+    },
+    [trendingMovies.rejected]: (state) => {
+      state.trending.status = "error";
+    },
+    [popularMovies.pending]: (state) => {
+      state.popular.status = "loading";
+    },
+    [popularMovies.fulfilled]: (state, action) => {
+      state.popular.status = "success";
+      state.popular.list = action.payload.results;
+    },
+    [popularMovies.rejected]: (state) => {
+      state.popular.status = "error";
+    },
+    [movieActors.pending]: (state) => {
+      state.movieActors.status = "loading";
+    },
+    [movieActors.fulfilled]: (state, action) => {
+      state.movieActors.status = "success";
+      state.movieActors.list = action.payload.cast;
+    },
+    [movieActors.rejected]: (state) => {
+      state.movieActors.status = "error";
+    },
+    [movieDetails.pending]: (state) => {
+      state.movieDetails.status = "loading";
+    },
+    [movieDetails.fulfilled]: (state, action) => {
+      state.movieDetails.status = "success";
+      state.movieDetails.list = action.payload;
+    },
+    [movieDetails.rejected]: (state) => {
+      state.movieDetails.status = "error";
+    },
+  },
+});
+export default movies.reducer;
