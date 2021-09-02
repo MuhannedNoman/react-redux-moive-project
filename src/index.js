@@ -8,7 +8,11 @@ import reportWebVitals from './reportWebVitals';
 
 import reducer from './storage/reducer';
 
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  /* eslint-disable */
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
   <React.StrictMode>

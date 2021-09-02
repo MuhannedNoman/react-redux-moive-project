@@ -1,11 +1,29 @@
+export function setUser(user){
+  console.log("user",user)
+  return {
+    type: 'user/add',
+    payload: user
+  }
+}
+
+export function authStatus(status){
+  return {
+    type: 'auth/status',
+    payload: status
+  }
+}
+
 const initValue = {
-  count: 0
+  user: {},
+  isAuthenticated: false
 };
 
 function reducer(state=initValue, action){
   switch(action.type){
-    case "inc":
-      return {count: state.count + 1}
+    case "user/add":
+      return {...state, user: action.payload}
+    case "auth/status":
+      return {...state, isAuthenticated: action.payload}
     default:
       return state;
   }
