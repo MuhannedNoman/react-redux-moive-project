@@ -2,7 +2,7 @@ import React from 'react';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../storage/reducer';
+import { setUser, authStatus } from '../../storage/reducer';
 import fire from '../../db/config/firebase';
 
 export default function Sign(){
@@ -22,6 +22,7 @@ export default function Sign(){
           creationTime: user.metadata.creationTime
         }
         dispatch(setUser(userData))
+        dispatch(authStatus(true))
         
       }).catch((error) => {
         const {code} = error;
