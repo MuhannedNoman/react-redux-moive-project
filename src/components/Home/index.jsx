@@ -6,13 +6,13 @@ import PopularMovies from './PopularMovies';
 import TrendingMovies from './TrenddingMovies';
 
 
-const Home = () => 
+const Home = () => (
   <>
-         <PopularMovies />
-         <TrendingMovies/>
-         <LatestMovies/>
-</>
-
+    <PopularMovies />
+    <TrendingMovies/>
+    <LatestMovies/>
+  </>
+)
     
 
 
