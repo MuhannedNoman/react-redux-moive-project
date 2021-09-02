@@ -8,13 +8,15 @@ import MovieList from '../Movies';
 import SingleMovie from '../Movies/SignleMovie';
 import Actors from '../Actors';
 import SingleActor from '../Actors/SingleActor';
+import NavBar from '../NavBar';
 
 const Routes = () => 
       <Switch>       
-          <Route exact path='/'>
-            <Home/>
-          </Route>
-          <Route exact path='/signin'>
+         
+          <Route exact path='/navbar'>
+            <NavBar />
+            </Route>
+          <Route exact path='/sign-in'>
             <SignIn />
             </Route>
           <Route exact path='/movies'>
@@ -23,12 +25,15 @@ const Routes = () =>
           <Route exact path='/movie'>
             <SingleMovie />
             </Route>
-          <Route exact path='/actor'>
+          <Route exact path='/actors'>
             <Actors />
             </Route>
           <Route exact path='/actor'>
             <SingleActor/>
             </Route>
+            <Route exact path='/'>
+            <Home/>
+          </Route>
       </Switch>
  
 
