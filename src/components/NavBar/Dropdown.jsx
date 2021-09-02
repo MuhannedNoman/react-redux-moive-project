@@ -1,10 +1,6 @@
 import React , {useState} from 'react';
 // import { Link } from 'react-router-dom';
 
-
-// Styles
-import {DropdownStyle} from "./Styles"
-
 const genres= [
   {
   "id": 28,
@@ -82,7 +78,7 @@ const genres= [
   "id": 37,
   "name": "Western"
   }
-  ]
+]
 
 function Dropdown() {
   const [genre, setGenre] = useState(null)
@@ -93,7 +89,7 @@ function Dropdown() {
   }
 
   return (
-    <DropdownStyle  role="presentation" >
+    <>
       {genres.map((movie) => 
             <p key={movie.id} role="presentation" onKeyDown={() => handleClick(movie.id)} onClick={() => handleClick(movie.id) }>
               {/* <Link  to="/" > */}
@@ -101,7 +97,7 @@ function Dropdown() {
               {/* </Link> */}
             </p>
           )}
-    </DropdownStyle>
+    </>
   );
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 
 // Components
-import NavBar from "./components/NavBar"
+import NavBar from './components/NavBar'
 import Routes from './components/Routes/Routes';
 
 

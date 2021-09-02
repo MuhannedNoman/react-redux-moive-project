@@ -2,29 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
 
-// Styles
-import BookmarkIcon from '@material-ui/icons/Bookmark';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import  {NavBarStyle}  from './Styles';
-
 // Components
 import Dropdown from './Dropdown';
 
 
-const styles = {
-  bookmarkStyle: {
-    color: '#FCD430',
-    fontSize: 35,
-  },
-  profileStyle: {
-    color: '#FCD430',
-    fontSize: '35px',
-    marginLeft: "15px",
-    verticalAlign: "middle"
-  },
-};
-
-const Nav = () => {
+const NavBar = () => {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false)
 
@@ -32,7 +14,7 @@ const Nav = () => {
   const closeMobileMenu = () => setClick(false);
 
   return (
-    <NavBarStyle>
+    <>
 
       <Navbar className="navbar ">
 
@@ -91,7 +73,7 @@ const Nav = () => {
         
           <li className="nav-item">
             <div className="nav-links" onKeyDown={closeMobileMenu} onClick={closeMobileMenu} role="presentation">
-              <BookmarkIcon style={styles.bookmarkStyle} />
+              Bookmarks
             </div>
           </li>
 
@@ -103,16 +85,13 @@ const Nav = () => {
               onClick={closeMobileMenu}
               >
               Login
-              <AccountCircleIcon style={styles.profileStyle} /> 
               {/* {authStore.user ? 'Profile' : 'Log In'} */}
             </Link>
           </li>
         </ul>
-
-
       </Navbar>
-    </NavBarStyle>
+    </>
   );
 };
 
-export default Nav;
+export default NavBar;
