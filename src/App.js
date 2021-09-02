@@ -5,6 +5,7 @@ import requests from "./reuqests/requests";
 import Row from "./components/Row";
 import Slider from "./containers/Slider";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   const { response, loading, setQuery, setLoading } = useFetch();
@@ -49,6 +50,7 @@ function App() {
         isLarge
         isLoading={loading}
       />
+      <Footer />
     </div>
   );
 }
