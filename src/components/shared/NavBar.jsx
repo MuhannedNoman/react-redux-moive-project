@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Dropdown } from 'react-bootstrap';
 import { AiOutlineUser } from 'react-icons/ai';
+import { BrowserRouter, Link } from 'react-router-dom';
 import LOGO from '../../images/logo.png';
 
 function Header() {
+	const [scroll, setscroll] = useState(false);
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.pageYOffset > 1) {
+				setscroll(true);
+			} else if (window.pageYOffset < 1) {
+				setscroll(false);
+			}
+		};
+		window.addEventListener('scroll', handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
 	return (
 		<>
 			<Navbar
@@ -11,7 +27,7 @@ function Header() {
 				expand="lg"
 				fixed="top"
 				variant="dark"
-				className="navbar"
+				className={scroll ? 'scrolled-navbar' : 'navbar'}
 			>
 				<Container className="nav">
 					<Navbar.Brand>
@@ -21,20 +37,44 @@ function Header() {
 					<Navbar.Collapse id="responsive-navbar-nav">
 						<Nav>
 							<Nav.Link>
-								<p className="menu-item">Home</p>
+								<p className="menu-item">
+									<BrowserRouter>
+										<Link to="/" className="link">
+											Home
+										</Link>
+									</BrowserRouter>
+								</p>
 							</Nav.Link>
 							<Nav.Link>
-								<p className="menu-item">Actors</p>
+								<p className="menu-item">
+									<BrowserRouter>
+										<Link to="/actors" className="link">
+											Actors
+										</Link>
+									</BrowserRouter>
+								</p>
 							</Nav.Link>
 							<Nav.Link>
-								<p className="menu-item">Movies</p>
+								<p className="menu-item">
+									<BrowserRouter>
+										<Link to="/movies" className="link">
+											Movies
+										</Link>
+									</BrowserRouter>
+								</p>
 							</Nav.Link>
 							<NavDropdown
-								title={<span className="menu-item">Genre</span>}
+								title={<span className="link">Genre</span>}
 								id="collasible-nav-dropdown"
 							>
 								<NavDropdown.Item>
-									<p className="menu-item-dropdown">Action </p>
+									<p className="">
+										<BrowserRouter>
+											<Link to="/" className="menu-item-dropdown">
+												Action
+											</Link>
+										</BrowserRouter>{' '}
+									</p>
 								</NavDropdown.Item>
 							</NavDropdown>
 						</Nav>
