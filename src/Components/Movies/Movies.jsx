@@ -91,8 +91,10 @@ export default function Movies() {
                     );
                   })}
                 </HStack>
-                <Icon color="#dc6208" boxSize={6} as={FaImdb} />{" "}
-                <Badge> {movie.vote_average} </Badge>
+                <HStack spacing="1">
+                  <Icon color="#dc6208" boxSize={6} as={FaImdb} />{" "}
+                  <Badge> {movie.vote_average} </Badge>
+                </HStack>
               </VStack>
             </Box>
           </LinkBox>
