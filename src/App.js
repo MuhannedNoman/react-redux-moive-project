@@ -10,10 +10,12 @@ import MoviesContainer from "./Containers/MoviesContainer/MoviesContainer";
 import SingleActorContainer from "./Containers/SingleActorContainer/SingleActorContainer";
 import SingleMovieContainer from "./Containers/SingleMovieContainer/SingleMovieContainer";
 import { Route, Switch } from "react-router";
+import ScrollToTop from "./Utilities/ScrollToTop";
 
 function App() {
   return (
     <div>
+      <ScrollToTop />
       <NavBarContainer />
       {/* <FooterContainer /> */}
       <Switch>

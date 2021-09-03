@@ -84,7 +84,7 @@ const movies = createSlice({
     },
     [movieActors.fulfilled]: (state, action) => {
       state.movieActors.status = "success";
-      state.movieActors.list = action.payload.cast;
+      state.movieActors.list = action.payload;
     },
     [movieActors.rejected]: (state) => {
       state.movieActors.status = "error";
