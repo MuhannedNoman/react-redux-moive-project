@@ -19,7 +19,7 @@ function App() {
       <NavBarContainer />
       {/* <FooterContainer /> */}
       <Switch>
-        <Route path="/actors">
+        <Route exact path="/actors">
           <ActorContainer />
         </Route>
         <Route path="/bookmarks">
@@ -32,7 +32,7 @@ function App() {
         <Route exact path="/movies/:genreId">
           <MoviesContainer />
         </Route>
-        <Route path="/actors/:actorId">
+        <Route exact path="/actors/:actorId">
           <SingleActorContainer />
         </Route>
         <Route exact path="/movies/movie/:movieId">

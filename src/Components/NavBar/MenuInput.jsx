@@ -10,12 +10,10 @@ import {
 const navigationKeys = ["ArrowUp", "ArrowDown", "Escape"];
 
 const MenuInput = (props) => {
-  const searchResults = useSelector((state) => state.search.searchResult);
   const searchValue = useSelector((state) => state.search.searchValue);
   useEffect(() => {
     if (searchValue !== "") dispatch(getSearchResult(searchValue));
     else dispatch(emptySearchResults());
-    console.log(searchResults);
   }, [searchValue]);
 
   const dispatch = useDispatch();
