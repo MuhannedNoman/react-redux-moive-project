@@ -1,4 +1,13 @@
-import { Box, Flex, IconButton, Image, Link, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  IconButton,
+  Image,
+  Link,
+  Text,
+  Stack,
+  Button,
+} from "@chakra-ui/react";
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,51 +17,83 @@ import { movieActors, movieDetails } from "../../Redux/Slices/moviesSlice";
 import "./SingleMovie.scss";
 import { Link as ReachLink } from "react-router-dom";
 import { useState } from "react";
-import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ExternalLinkIcon,
+} from "@chakra-ui/icons";
 
 const imageUrl = "https://image.tmdb.org/t/p/w500/";
 export default function SingleMovie() {
   const [actorNum, setActorNum] = useState({ first: 0, second: 5 });
+  const [movieNum, setMovieNum] = useState({ first: 0, second: 5 });
   const { movieId } = useParams();
   const dispatch = useDispatch();
   const movie = useSelector((state) => state.movies.movieDetails.list);
   const similarMovs = useSelector(
     (state) => state.moviesFilter.similarMovies.list
   );
+
   const actors = useSelector((state) => state.movies.movieActors.list);
   useEffect(() => {
     dispatch(movieDetails(movieId));
     dispatch(similarMovies(movieId));
     dispatch(movieActors(movieId));
+    setActorNum({
+      first: 0,
+      second: 5,
+    });
+    setMovieNum({
+      first: 0,
+      second: 5,
+    });
   }, [movieId]);
-
+  console.log(similarMovs);
   return (
     <Box p="6" bg="black" minH="100vh">
-      <Flex>
+      <Flex direction={["column,row,row,row"]}>
         <Image
           borderRadius="10px"
           h="xl"
           src={`${imageUrl}/${movie.poster_path}`}
         />
-        <Box borderRadius="10px" ml="5" w="50%" boxShadow="lg" bg="white">
+        <Flex
+          bg="whiteAlpha.500"
+          color="white"
+          p="5"
+          direction="column"
+          borderRadius="10px"
+          ml="5"
+          w="50%"
+          boxShadow="lg"
+        >
           <Text
-            p="5"
-            color="blackAlpha.800"
             fontWeight="bold"
             fontSize="4xl"
             borderBottom="#dc6208 solid 0.2rem"
+            flexBasis="20%"
           >
             {movie.original_title}
           </Text>
-          <Text
-            p="5"
-            fontWeight="semibold"
-            fontSize="lg"
-            color="blackAlpha.700"
-          >
-            {movie.overview}
-          </Text>
-        </Box>
+          <Stack justify="space-evenly" flexBasis="80%">
+            <Text p="5" fontWeight="semibold" fontSize="lg" color="white">
+              {movie.overview}
+            </Text>
+
+            {movie.videos && (
+              <Button
+                bg="#dc6208"
+                _hover={{ background: "#f56d09", textDecoration: "none" }}
+                m="auto"
+                as={Link}
+                isExternal
+                href={`https://www.youtube.com/watch?v=${movie.videos?.results[0]?.key}`}
+              >
+                Watch Trailer <ExternalLinkIcon mx="2" />{" "}
+              </Button>
+            )}
+          </Stack>
+        </Flex>
         {actors.cast && (
           <Image
             borderRadius="10px"
@@ -88,6 +129,7 @@ export default function SingleMovie() {
       {actors.cast && (
         <Flex align="center" mt="5" justify="space-evenly" bg="black">
           <IconButton
+            mr="3"
             icon={<ArrowLeftIcon />}
             onClick={() => {
               if (actorNum.first !== 0)
@@ -118,12 +160,13 @@ export default function SingleMovie() {
           <IconButton
             icon={<ArrowRightIcon />}
             onClick={() => {
-              setActorNum((prevNum) => {
-                return {
-                  first: prevNum.first + 5,
-                  second: prevNum.second + 5,
-                };
-              });
+              if (actors.cast.length >= actorNum.second)
+                setActorNum((prevNum) => {
+                  return {
+                    first: prevNum.first + 5,
+                    second: prevNum.second + 5,
+                  };
+                });
             }}
           />
         </Flex>
@@ -140,8 +183,21 @@ export default function SingleMovie() {
         Similar Movies You May Like
       </Text>
 
-      <Flex mt="5" justify="space-evenly" bg="black">
-        {similarMovs.slice(0, 5).map((movie) => {
+      <Flex align="center" mt="5" justify="space-evenly" bg="black">
+        <IconButton
+          icon={<ArrowLeftIcon />}
+          mr="3"
+          onClick={() => {
+            if (movieNum.first !== 0)
+              setMovieNum((prevNum) => {
+                return {
+                  first: prevNum.first - 5,
+                  second: prevNum.second - 5,
+                };
+              });
+          }}
+        />
+        {similarMovs.slice(movieNum.first, movieNum.second).map((movie) => {
           return (
             <Link
               key={movie.id}
@@ -172,6 +228,18 @@ export default function SingleMovie() {
             </Link>
           );
         })}{" "}
+        <IconButton
+          icon={<ArrowRightIcon />}
+          onClick={() => {
+            if (movieNum.second < 20)
+              return setMovieNum((prevNum) => {
+                return {
+                  first: prevNum.first + 5,
+                  second: prevNum.second + 5,
+                };
+              });
+          }}
+        />
       </Flex>
       {/* This is Single Movie Components:
       <div>
