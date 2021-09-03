@@ -8,13 +8,13 @@ import MovieList from '../Movies';
 import SingleMovie from '../Movies/SignleMovie';
 import Actors from '../Actors';
 import SingleActor from '../Actors/SingleActor';
-import NavBar from '../NavBar';
+import About from '../About';
 
 const Routes = () => 
       <Switch>       
          
-          <Route exact path='/navbar'>
-            <NavBar />
+          <Route exact path='/about'>
+            <About />
             </Route>
           <Route exact path='/sign-in'>
             <SignIn />
