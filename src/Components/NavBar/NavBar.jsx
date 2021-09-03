@@ -8,7 +8,12 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  MenuDivider,
+  Image,
+  Button,
+  LinkBox,
 } from "@chakra-ui/react";
+import MenuInput from "./MenuInput";
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,10 +21,11 @@ import { Link as ReachLink } from "react-router-dom";
 import "./NavBar.scss";
 
 import { allGenres } from "../../Redux/Slices/moviesFilterSlice";
-
+import { SearchIcon } from "@chakra-ui/icons";
+const imageUrl = "https://image.tmdb.org/t/p/w500/";
 export default function NavBar() {
   const genresList = useSelector((state) => state.moviesFilter.allGenres.list);
-
+  const searchResults = useSelector((state) => state.search.searchResult.list);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(allGenres());
@@ -45,6 +51,7 @@ export default function NavBar() {
             TMDB
           </Text>
         </Link>
+
         <HStack fontSize="lg" spacing="5">
           <Link borderRadius="30px" to="/" as={ReachLink}>
             Home
@@ -54,13 +61,22 @@ export default function NavBar() {
           </Link>
           <Menu>
             <MenuButton>Movies</MenuButton>
-            <MenuList h="15rem" overflow="auto" fontSize="md">
+            <MenuList bg="black" h="15rem" overflow="auto" fontSize="md">
               {genresList.map((genre) => (
-                <Link key={genre.id} to={`/movies/${genre.id}`} as={ReachLink}>
-                  <MenuItem color="black" key={genre.id}>
+                <LinkBox
+                  key={genre.id}
+                  to={`/movies/${genre.id}`}
+                  as={ReachLink}
+                >
+                  <MenuItem
+                    bg="whiteAlpha.300"
+                    _hover={{ background: "whiteAlpha.500" }}
+                    color="white"
+                    key={genre.id}
+                  >
                     {genre.name}{" "}
                   </MenuItem>
-                </Link>
+                </LinkBox>
               ))}
             </MenuList>
           </Menu>
@@ -72,6 +88,33 @@ export default function NavBar() {
             Bookmarks
           </Link>
         </HStack>
+        <Menu>
+          <MenuButton color="black" leftIcon={<SearchIcon />} as={Button}>
+            Search
+          </MenuButton>
+          <MenuList p="3" bg="black" w="25rem">
+            <MenuInput />
+            <MenuDivider />
+            {searchResults.slice(0, 4).map((movie) => (
+              <Link
+                to={`/movies/movie/${movie.id}`}
+                as={ReachLink}
+                _hover={{ textDecoration: "none", color: "gray" }}
+                key={movie.id}
+              >
+                <Flex w="100%" my="2">
+                  <Image
+                    boxSize="5rem"
+                    src={`${imageUrl}/${movie.poster_path}`}
+                  />
+                  <Box p="4" w="100%" bg="whiteAlpha.300">
+                    <Text as="h1">{movie.title}</Text>
+                  </Box>
+                </Flex>
+              </Link>
+            ))}
+          </MenuList>
+        </Menu>
       </Flex>
       {/* This is The Header Component it should contain navigation, Login, Search
       <ul>
