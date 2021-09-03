@@ -1,15 +1,14 @@
 import React from 'react';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
+import Header from './components/header';
+import Home from './components/Home/home';
 
 function App() {
-	console.log('test');
 	return (
 		<div className="App">
-			<h1 className="text-primary">Bootstrap checked</h1>
-			<p>Centered text with Sass(checked)</p>
-			<Button variant="primary">React Bootstrap checked</Button>
+			<Header />
+			<Home />
 		</div>
 	);
 }
