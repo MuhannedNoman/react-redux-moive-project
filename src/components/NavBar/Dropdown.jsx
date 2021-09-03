@@ -1,9 +1,6 @@
-import React from 'react';
+import React , {useState} from 'react';
 // import { Link } from 'react-router-dom';
 
-// hooks
-// import { GENRES } from '../hooks/APIs';
-// import useMoviesFetch from "../hooks/useMoviesFetch"
 
 // Styles
 import {DropdownStyle} from "./Styles"
@@ -88,20 +85,17 @@ const genres= [
   ]
 
 function Dropdown() {
-  // const [genre, setGenre] = useState(null)
-  // const {data: genres, isLoaded} = useMoviesFetch(GENRES)
+  const [genre, setGenre] = useState(null)
+  console.log("🚀 ~ file: Dropdown.jsx ~ line 89 ~ Dropdown ~ genre", genre)
   
-  // const handleClick = (movieId) => {
-  //   setGenre(movieId)
-  // }
-  // if (!isLoaded) return <p>Loading ...</p>
-
+  const handleClick = (genreId) => {
+    setGenre(genreId)
+  }
 
   return (
     <DropdownStyle  role="presentation" >
       {genres.map((movie) => 
-            // <p key={movie.id} role="presentation" onKeyDown={() => handleClick(movie.id)} onClick={() => handleClick(movie.id) }>
-            <p key={movie.id} role="presentation">
+            <p key={movie.id} role="presentation" onKeyDown={() => handleClick(movie.id)} onClick={() => handleClick(movie.id) }>
               {/* <Link  to="/" > */}
                 {movie.name}
               {/* </Link> */}

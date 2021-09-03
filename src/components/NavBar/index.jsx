@@ -98,7 +98,7 @@ const Nav = () => {
 
           <li className="nav-item">
             <Link
-              to="/"
+              to="/sign-in"
               className="nav-links login "
               onClick={closeMobileMenu}
               >

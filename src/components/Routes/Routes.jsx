@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 // Components
 import Home from '../Home';
-import SignIn from '../Authentications/SignIn';
+import SignIn from '../SignIn';
 import MovieList from '../Movies';
 import SingleMovie from '../Movies/SignleMovie';
 import Actors from '../Actors';
