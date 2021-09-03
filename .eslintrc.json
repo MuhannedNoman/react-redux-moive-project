@@ -24,7 +24,6 @@
       {
         "endOfLine": "auto"
       }
-    ],
-    "no-console": "error"
+    ]
   }
 }

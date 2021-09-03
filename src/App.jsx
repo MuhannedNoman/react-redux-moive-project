@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 
 function App() {
+	console.log('test');
 	return (
 		<div className="App">
 			<h1 className="text-primary">Bootstrap checked</h1>
