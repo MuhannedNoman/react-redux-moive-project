@@ -102,15 +102,21 @@ export default function NavBar() {
                 _hover={{ textDecoration: "none", color: "gray" }}
                 key={movie.id}
               >
-                <Flex w="100%" my="2">
-                  <Image
-                    boxSize="5rem"
-                    src={`${imageUrl}/${movie.poster_path}`}
-                  />
-                  <Box p="4" w="100%" bg="whiteAlpha.300">
-                    <Text as="h1">{movie.title}</Text>
-                  </Box>
-                </Flex>
+                <MenuItem
+                  p="0"
+                  my="1"
+                  _hover={{ background: "none", textDecoration: "none" }}
+                >
+                  <Flex w="100%" my="2">
+                    <Image
+                      boxSize="5rem"
+                      src={`${imageUrl}/${movie.poster_path}`}
+                    />
+                    <Box p="4" w="100%" bg="whiteAlpha.300">
+                      <Text as="h1">{movie.title}</Text>
+                    </Box>
+                  </Flex>{" "}
+                </MenuItem>
               </Link>
             ))}
           </MenuList>

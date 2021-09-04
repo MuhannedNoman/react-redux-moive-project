@@ -2,17 +2,33 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Actor.scss";
 import { getActors } from "../../Redux/Slices/actorsSlice";
-import { Flex, Box, Image, Skeleton, Text, LinkBox } from "@chakra-ui/react";
+import {
+  Flex,
+  Box,
+  Image,
+  Skeleton,
+  Text,
+  LinkBox,
+  Stack,
+  Spinner,
+} from "@chakra-ui/react";
 import { Link as ReachLink } from "react-router-dom";
 
 const imageUrl = "https://image.tmdb.org/t/p/w500/";
 export default function Actor() {
   const actors = useSelector((state) => state.actors.actors.list);
   console.log(actors);
+  const actorsStatus = useSelector((state) => state.actors.actors.status);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getActors());
   }, []);
+  if (actorsStatus !== "success")
+    return (
+      <Stack align="center" justify="center" bg="black" h="100vh">
+        <Spinner size="xl" color="white" />
+      </Stack>
+    );
   return (
     <Flex
       direction={["column", "row", "row", "row"]}
@@ -25,7 +41,7 @@ export default function Actor() {
       {actors.map((actor) => (
         <LinkBox
           as={ReachLink}
-          to={`/actors/actor/${actor.id}`}
+          to={`/actors/${actor.id}`}
           key={actor.id}
           m="1rem"
           _hover={{ transform: "scale(1.1)" }}

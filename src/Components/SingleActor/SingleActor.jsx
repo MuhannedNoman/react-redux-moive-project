@@ -43,9 +43,9 @@ export default function SingleActor() {
   }, [actorId]);
   if (actorMoviesStatus !== "success" && actorStatus !== "success")
     return (
-      <Box bg="black" h="100vh">
+      <Stack align="center" justify="center" bg="black" h="100vh">
         <Spinner size="xl" color="white" />
-      </Box>
+      </Stack>
     );
   return (
     <Box p="6" bg="black" minH="100vh">

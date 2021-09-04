@@ -9,6 +9,8 @@ import {
   Skeleton,
   LinkBox,
   VStack,
+  Stack,
+  Spinner,
 } from "@chakra-ui/react";
 import React from "react";
 import { useEffect } from "react";
@@ -23,6 +25,9 @@ export default function Movies() {
   const { genreId } = useParams();
   const genres = useSelector((state) => state.moviesFilter.allGenres.list);
   const movies = useSelector((state) => state.moviesFilter.moviesByGenre.list);
+  const moviesStatus = useSelector(
+    (state) => state.moviesFilter.moviesByGenre.status
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(moviesByGenre(genreId));
@@ -39,7 +44,12 @@ export default function Movies() {
 
     return { ...movie, genre_ids: newIds };
   });
-
+  if (moviesStatus !== "success")
+    return (
+      <Stack align="center" justify="center" bg="black" h="100vh">
+        <Spinner size="xl" color="white" />
+      </Stack>
+    );
   return (
     <Flex
       direction={["column", "row", "row", "row"]}

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const trendingMovies = createAsyncThunk(
+export const getTrendingMovies = createAsyncThunk(
   "movies/trendingMovies",
   async () => {
     return axios
@@ -13,7 +13,7 @@ export const trendingMovies = createAsyncThunk(
       });
   }
 );
-export const popularMovies = createAsyncThunk(
+export const getPopularMovies = createAsyncThunk(
   "movies/popularMovies",
   async () => {
     return axios
@@ -59,24 +59,24 @@ const movies = createSlice({
     movieDetails: { status: "", list: [] },
   },
   extraReducers: {
-    [trendingMovies.pending]: (state) => {
+    [getTrendingMovies.pending]: (state) => {
       state.trending.status = "loading";
     },
-    [trendingMovies.fulfilled]: (state, action) => {
+    [getTrendingMovies.fulfilled]: (state, action) => {
       state.trending.status = "success";
       state.trending.list = action.payload.results;
     },
-    [trendingMovies.rejected]: (state) => {
+    [getTrendingMovies.rejected]: (state) => {
       state.trending.status = "error";
     },
-    [popularMovies.pending]: (state) => {
+    [getPopularMovies.pending]: (state) => {
       state.popular.status = "loading";
     },
-    [popularMovies.fulfilled]: (state, action) => {
+    [getPopularMovies.fulfilled]: (state, action) => {
       state.popular.status = "success";
       state.popular.list = action.payload.results;
     },
-    [popularMovies.rejected]: (state) => {
+    [getPopularMovies.rejected]: (state) => {
       state.popular.status = "error";
     },
     [movieActors.pending]: (state) => {

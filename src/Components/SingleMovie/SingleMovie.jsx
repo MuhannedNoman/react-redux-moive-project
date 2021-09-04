@@ -7,6 +7,8 @@ import {
   Text,
   Stack,
   Button,
+  Spinner,
+  HStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { useEffect } from "react";
@@ -40,6 +42,7 @@ export default function SingleMovie() {
   const movieStatus = useSelector((state) => state.movies.movieDetails.status);
 
   const actors = useSelector((state) => state.movies.movieActors.list);
+
   useEffect(() => {
     dispatch(movieDetails(movieId));
     dispatch(similarMovies(movieId));
@@ -53,7 +56,16 @@ export default function SingleMovie() {
       second: 5,
     });
   }, [movieId]);
-
+  if (
+    actorsStatus !== "success" &&
+    similarMovsStatus !== "success" &&
+    movieStatus !== "success"
+  )
+    return (
+      <Stack align="center" justify="center" bg="black" h="100vh">
+        <Spinner size="xl" color="white" />
+      </Stack>
+    );
   return (
     <Box p="6" bg="black" minH="100vh">
       {movieStatus === "success" && actorsStatus === "success" && (
@@ -74,14 +86,37 @@ export default function SingleMovie() {
             h="lg"
             boxShadow="lg"
           >
-            <Text
-              fontWeight="bold"
-              fontSize="4xl"
-              borderBottom="#dc6208 solid 0.2rem"
-              flexBasis="20%"
-            >
-              {movie.original_title}
-            </Text>
+            <Stack borderBottom="#dc6208 solid 0.2rem">
+              <Text fontWeight="bold" fontSize="4xl" flexBasis="20%">
+                {movie.original_title}
+              </Text>
+              <Flex justify="space-between">
+                <HStack spacing="2">
+                  {movie.genres.slice(0, 3).map((genre) => (
+                    <Text key={genre.id} fontSize="lg" color="gray.200">
+                      {genre.name}
+                    </Text>
+                  ))}
+                </HStack>
+                <HStack>
+                  <Text fontSize="lg" fontWeight="semibold">
+                    {" "}
+                    Directed By:{" "}
+                  </Text>
+                  {actors.crew.slice(0, 1).map((crew) => (
+                    <Text
+                      fontSize="lg"
+                      color="gray.200"
+                      fontWeight="bold"
+                      key={crew.id}
+                    >
+                      {" "}
+                      {crew.name}
+                    </Text>
+                  ))}
+                </HStack>
+              </Flex>
+            </Stack>
             <Stack justify="space-evenly" flexBasis="80%">
               <Text p="5" fontWeight="semibold" fontSize="lg" color="white">
                 {movie.overview}
