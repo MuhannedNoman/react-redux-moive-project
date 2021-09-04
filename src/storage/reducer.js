@@ -12,9 +12,19 @@ export function authStatus(status){
   }
 }
 
+export function setGenres(genre){
+  return {
+    type: 'genre/set',
+    payload: genre
+  }
+}
+
 const initValue = {
   user: {},
-  isAuthenticated: false
+  isAuthenticated: false,
+  moviesFilter: {
+    genre: 0
+  }
 };
 
 function reducer(state=initValue, action){
@@ -23,6 +33,8 @@ function reducer(state=initValue, action){
       return {...state, user: action.payload}
     case "auth/status":
       return {...state, isAuthenticated: action.payload}
+    case "genre/set":
+      return {...state, moviesFilter: { ...state.moviesFilter, genre: action.payload }}
     default:
       return state;
   }

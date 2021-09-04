@@ -1,0 +1,40 @@
+.nav-search-input {
+  border: none;
+  background-color: #eeeeee44;
+  border-radius: 7px;
+  transition: 0.3s;
+}
+
+.nav-search-input:focus {
+  outline: none;
+  background-color: #eeeeee66;
+  box-shadow: 0 0 7px #eeeeee88;
+}
+
+.brand {
+  font-size: 1.5rem;
+}
+
+.link-comp {
+  text-decoration: none;
+  color: #999999;
+  transition: 0.3s;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.link-comp:hover {
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #eeeeee;
+  color: #222222;
+}
+
+#user-icon {
+  border: 2px solid #999999;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-position: center;
+  background-size: cover;
+}
