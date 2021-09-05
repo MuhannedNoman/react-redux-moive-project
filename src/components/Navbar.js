@@ -6,6 +6,7 @@ import {
   QuestionCircleTwoTone,
   ContainerTwoTone,
 } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const { SubMenu } = Menu;
 
@@ -16,16 +17,7 @@ function Navbar() {
     setCurrent(e.key);
   };
   return (
-    <div
-    // style={{
-    //   display: "flex",
-    //   justifyContent: "space-between",
-    //   background: "black",
-    //   padding: "0px 20px",
-    //   alignItems: "center",
-    // }}
-    >
-      {/* <h1 style={{ color: "white" }}>idkTV</h1> */}
+    <div>
       <Menu
         onClick={handleClick}
         selectedKeys={[current]}
@@ -39,15 +31,26 @@ function Navbar() {
         }}
       >
         <Menu.Item key="home" icon={<HomeTwoTone />}>
-          Home
+          <Link style={{ color: "white" }} to="/">
+            Home
+          </Link>
         </Menu.Item>
         <Menu.Item key="about" icon={<QuestionCircleTwoTone />}>
-          About
+          <Link style={{ color: "white" }} to="/about">
+            About
+          </Link>
         </Menu.Item>
         <Menu.Item key="actors" icon={<SmileTwoTone />}>
-          Actors
+          <Link style={{ color: "white" }} to="/actors">
+            Actors
+          </Link>
         </Menu.Item>
-        <SubMenu key="genres" icon={<ContainerTwoTone />} title="genres">
+        <SubMenu
+          style={{ color: "white" }}
+          key="genres"
+          icon={<ContainerTwoTone />}
+          title="genres"
+        >
           <Menu.ItemGroup title="Actions">
             <Menu.Item key="setting:1">Actions</Menu.Item>
           </Menu.ItemGroup>
