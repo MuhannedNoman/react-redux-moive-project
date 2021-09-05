@@ -5,6 +5,7 @@ import {
   GithubOutlined,
   LinkedinOutlined,
 } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -31,13 +32,13 @@ function Footer() {
             <ul className="box">
               <li className="link_name">Links</li>
               <li>
-                <a href="#test">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="#test">About Us</a>
+                <Link to="/about">About</Link>
               </li>
               <li>
-                <a href="#test">Actors</a>
+                <Link to="/actors">Actors</Link>
               </li>
             </ul>
             <ul className="box">
