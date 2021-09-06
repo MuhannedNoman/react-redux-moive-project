@@ -39,6 +39,7 @@ export default function Bookmarks() {
       </Stack>
     );
   }
+  if (!bookmarkedMovies) return <h1>loading</h1>;
   return (
     <Box bg="black" minH="100vh" spacing="5">
       <Flex
@@ -83,14 +84,15 @@ export default function Bookmarks() {
               </LinkBox>
               <VStack p="3">
                 <HStack>
-                  {movie.genre_ids.map((id) => {
-                    return (
-                      <Text fontSize="small" key={id}>
-                        {" "}
-                        {id}{" "}
-                      </Text>
-                    );
-                  })}
+                  {movie.genre_ids &&
+                    movie.genre_ids.map((id) => {
+                      return (
+                        <Text fontSize="small" key={id}>
+                          {" "}
+                          {id}{" "}
+                        </Text>
+                      );
+                    })}
                 </HStack>
                 <HStack spacing="1">
                   <Icon color="#dc6208" boxSize={6} as={FaImdb} />{" "}

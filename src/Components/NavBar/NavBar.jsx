@@ -25,8 +25,7 @@ import SignIn from "./SignIn";
 import UserProfile from "./UserProfile";
 import AlertModal from "./Alert";
 import { emptySearchValue } from "../../Redux/Slices/searchSlice";
-// import { signInWithGoogle } from "../../Firebase/googleProvider";
-// import { FaGoogle } from "react-icons/fa";
+
 const imageUrl = "https://image.tmdb.org/t/p/w500/";
 export default function NavBar() {
   const genresList = useSelector((state) => state.moviesFilter.allGenres.list);
@@ -45,63 +44,65 @@ export default function NavBar() {
       color="white"
     >
       <Flex h="100%" align="center" justify="space-between">
-        <Link as={ReachLink} to="/">
-          <Text
-            letterSpacing="1px"
-            as="h1"
-            fontSize="lg"
-            fontWeight="bold"
-            rounded="full"
-          >
-            TMDB
-          </Text>
-        </Link>
-        <Menu>
-          <MenuButton
-            bg="transparent"
-            color="white"
-            leftIcon={<SearchIcon />}
-            as={Button}
-            _hover={{ background: "transparent" }}
-            _active={{ background: "transparent" }}
-            outline="none"
-            border="none"
-          >
-            Search
-          </MenuButton>
-          <MenuList p="3" bg="black" w="25rem">
-            <MenuInput />
-            <MenuDivider />
-            {searchResults.slice(0, 4).map((movie) => (
-              <Link
-                to={`/movies/movie/${movie.id}`}
-                as={ReachLink}
-                _hover={{ textDecoration: "none", color: "gray" }}
-                key={movie.id}
-              >
-                <MenuItem
-                  p="0"
-                  my="1"
-                  _hover={{ background: "none", textDecoration: "none" }}
+        <HStack spacing="10">
+          <Link mr="10" as={ReachLink} to="/">
+            <Text
+              letterSpacing="1px"
+              as="h1"
+              fontSize="lg"
+              fontWeight="bold"
+              rounded="full"
+            >
+              TMDB
+            </Text>
+          </Link>
+          <Menu>
+            <MenuButton
+              bg="transparent"
+              color="white"
+              leftIcon={<SearchIcon />}
+              as={Button}
+              _hover={{ background: "transparent" }}
+              _active={{ background: "transparent" }}
+              outline="none"
+              border="none"
+            >
+              Search
+            </MenuButton>
+            <MenuList p="3" bg="black" w="25rem">
+              <MenuInput />
+              <MenuDivider />
+              {searchResults.slice(0, 4).map((movie) => (
+                <Link
+                  to={`/movies/movie/${movie.id}`}
+                  as={ReachLink}
+                  _hover={{ textDecoration: "none", color: "gray" }}
+                  key={movie.id}
                 >
-                  <Flex
-                    w="100%"
-                    my="2"
-                    onClick={() => dispatch(emptySearchValue())}
+                  <MenuItem
+                    p="0"
+                    my="1"
+                    _hover={{ background: "none", textDecoration: "none" }}
                   >
-                    <Image
-                      boxSize="5rem"
-                      src={`${imageUrl}/${movie.poster_path}`}
-                    />
-                    <Box p="4" w="100%" bg="whiteAlpha.300">
-                      <Text as="h1">{movie.title}</Text>
-                    </Box>
-                  </Flex>{" "}
-                </MenuItem>
-              </Link>
-            ))}
-          </MenuList>
-        </Menu>
+                    <Flex
+                      w="100%"
+                      my="2"
+                      onClick={() => dispatch(emptySearchValue())}
+                    >
+                      <Image
+                        boxSize="5rem"
+                        src={`${imageUrl}/${movie.poster_path}`}
+                      />
+                      <Box p="4" w="100%" bg="whiteAlpha.300">
+                        <Text as="h1">{movie.title}</Text>
+                      </Box>
+                    </Flex>{" "}
+                  </MenuItem>
+                </Link>
+              ))}
+            </MenuList>
+          </Menu>
+        </HStack>
 
         <HStack fontSize="lg" spacing="5">
           <Link borderRadius="30px" to="/" as={ReachLink}>

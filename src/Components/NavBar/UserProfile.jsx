@@ -47,8 +47,8 @@ function UserProfile() {
 
   return (
     <HStack spacing="4">
-      <Text> {user.displayName} </Text>
-      <Image boxSize="3.5rem" rounded borderRadius="full" src={url} />
+      <Text fontWeight="bold"> {user.displayName} </Text>
+      <Image boxSize="3rem" rounded borderRadius="full" src={url} />
     </HStack>
   );
 }

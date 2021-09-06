@@ -16,6 +16,9 @@ const app = initializeApp({
 
   appId: "1:419037731459:web:5567394769b6620b5459b6",
 });
+
 export const auth = getAuth();
+
 export const db = getFirestore();
+
 export default app;

@@ -85,7 +85,7 @@ export default function SingleActor() {
           </Stack>
           <Stack overflow="hidden" justify="space-evenly" flexBasis="80%">
             <Text p="5" fontWeight="semibold" fontSize="lg" color="white">
-              {actor.biography}
+              {actor.biography.slice(0, 1000)}
             </Text>{" "}
           </Stack>
         </Flex>

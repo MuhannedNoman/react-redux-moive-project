@@ -11,6 +11,8 @@ import {
   Icon,
   Badge,
   LinkBox,
+  Stack,
+  Spinner,
 } from "@chakra-ui/react";
 import { Link as ReachLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -36,10 +38,15 @@ export default function Home() {
   const trendingMovies = useSelector((state) => state.movies.trending.list);
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.moviesFilter.allGenres.list);
-
+  const popularMoviesStatus = useSelector(
+    (state) => state.movies.popular.status
+  );
+  const trendingMoviesStatus = useSelector(
+    (state) => state.movies.trending.status
+  );
   const newPopularMovies = popularMovies.map((movie) => {
     const newIds = movie.genre_ids.map((id) => {
-      const genre = genres.find((genre) => {
+      const genre = genres?.find((genre) => {
         return genre.id === id;
       });
       return genre.name;
@@ -49,8 +56,8 @@ export default function Home() {
   });
   const newTrendingMovies = trendingMovies.map((movie) => {
     const newIds = movie.genre_ids.map((id) => {
-      const genre = genres.find((genre) => {
-        return genre.id === id;
+      const genre = genres?.find((genre) => {
+        return genre?.id === id;
       });
       return genre.name;
     });
@@ -69,7 +76,12 @@ export default function Home() {
       second: 5,
     });
   }, []);
-
+  if (trendingMoviesStatus !== "success" || popularMoviesStatus !== "success")
+    return (
+      <Stack align="center" justify="center" bg="black" h="100vh">
+        <Spinner size="xl" color="white" />
+      </Stack>
+    );
   return (
     <Box bg="black" minH="100vh" py="5" px="3">
       <Text
