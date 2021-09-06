@@ -17,7 +17,7 @@ import {
   getActorDetails,
   getActorMovies,
 } from "../../Redux/Slices/actorsSlice";
-import "./SingleActor.scss";
+
 const imageUrl = "https://image.tmdb.org/t/p/w500/";
 export default function SingleActor() {
   const [movieNum, setMovieNum] = useState({

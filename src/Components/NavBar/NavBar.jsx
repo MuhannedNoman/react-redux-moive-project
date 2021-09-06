@@ -18,7 +18,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as ReachLink } from "react-router-dom";
-import "./NavBar.scss";
 
 import { allGenres } from "../../Redux/Slices/moviesFilterSlice";
 import { SearchIcon } from "@chakra-ui/icons";
@@ -61,9 +60,7 @@ export default function NavBar() {
           <Link borderRadius="30px" to="/" as={ReachLink}>
             Home
           </Link>
-          <Link to="/about" as={ReachLink}>
-            About
-          </Link>
+
           <Menu>
             <MenuButton>Movies</MenuButton>
             <MenuList bg="black" h="15rem" overflow="auto" fontSize="md">

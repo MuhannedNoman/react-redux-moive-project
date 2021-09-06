@@ -16,7 +16,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { similarMovies } from "../../Redux/Slices/moviesFilterSlice";
 import { movieActors, movieDetails } from "../../Redux/Slices/moviesSlice";
-import "./SingleMovie.scss";
 import { Link as ReachLink } from "react-router-dom";
 import { useState } from "react";
 import {

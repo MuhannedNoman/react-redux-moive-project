@@ -17,7 +17,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { moviesByGenre } from "../../Redux/Slices/moviesFilterSlice";
-import "./Movies.scss";
+
 import { FaImdb } from "react-icons/fa";
 import { Link as ReachLink } from "react-router-dom";
 import Bookmark from "../../Utilities/Bookmark";
