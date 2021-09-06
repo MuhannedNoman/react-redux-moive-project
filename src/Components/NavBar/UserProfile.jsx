@@ -16,14 +16,14 @@ function UserProfile() {
 
   useEffect(() => {
     if (user) postUser();
-  }, []);
+  }, [user]);
   async function postUser() {
     dispatch(setUserId(user.uid));
     const userRef = doc(db, "Users", user.uid);
     const docSnap = await getDoc(userRef);
-    const bookmarks = docSnap.data().bookmarks;
-    dispatch(userBookmarks(bookmarks));
-    if (!docSnap)
+    if (docSnap.exists()) dispatch(userBookmarks(docSnap.data().bookmarks));
+
+    if (!docSnap.exists()) {
       await setDoc(
         doc(db, "Users", user.uid),
 
@@ -34,6 +34,7 @@ function UserProfile() {
         },
         { merge: true }
       );
+    }
   }
 
   useEffect(() => {
@@ -45,7 +46,7 @@ function UserProfile() {
   }, [photo]);
 
   return (
-    <HStack>
+    <HStack spacing="4">
       <Text> {user.displayName} </Text>
       <Image boxSize="3.5rem" rounded borderRadius="full" src={url} />
     </HStack>
