@@ -1,10 +1,10 @@
-import React from 'react'
-import Bookmark from '../../Components/Bookmark/Bookmark'
+import React from "react";
+import Bookmarks from "../../Components/Bookmark/Bookmarks";
+
 export default function BookmarkContainer() {
-   return (
-      <div>
-         Bookmark Container
-         <Bookmark/>
-      </div>
-   )
+  return (
+    <div>
+      <Bookmarks />
+    </div>
+  );
 }

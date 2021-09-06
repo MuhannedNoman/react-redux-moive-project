@@ -1,9 +1,8 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React from "react";
 
 import ActorContainer from "./Containers/ActorContainer/ActorContainer";
 import BookmarkContainer from "./Containers/BookmarkContainer/BookmarkContainer";
-// import FooterContainer from "./Containers/FooterContainer/FooterContainer";
 import NavBarContainer from "./Containers/NavBarContainer/NavBarContainer";
 import HomeContainer from "./Containers/HomeContainer/HomeContainer";
 import MoviesContainer from "./Containers/MoviesContainer/MoviesContainer";
@@ -12,15 +11,9 @@ import SingleMovieContainer from "./Containers/SingleMovieContainer/SingleMovieC
 import { Route, Switch } from "react-router";
 import ScrollToTop from "./Utilities/ScrollToTop";
 import { useSelector } from "react-redux";
-// import { auth, db } from "./Firebase/Firebase";
-// import { doc, setDoc } from "firebase/firestore";
 
 function App() {
-  const bookmarks = useSelector((state) => state.bookmarks);
-  useEffect(() => {
-    console.log(bookmarks);
-  }, [bookmarks]);
-  // console.log(bookmarks);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   return (
     <div>
       <ScrollToTop />
@@ -30,9 +23,11 @@ function App() {
         <Route exact path="/actors">
           <ActorContainer />
         </Route>
-        <Route path="/bookmarks">
-          <BookmarkContainer />
-        </Route>
+        {isLoggedIn && (
+          <Route exact path="/bookmarks">
+            <BookmarkContainer />
+          </Route>
+        )}
 
         <Route path="/" exact>
           <HomeContainer />
@@ -46,6 +41,7 @@ function App() {
         <Route exact path="/movies/movie/:movieId">
           <SingleMovieContainer />
         </Route>
+
         <Route path="*">
           <HomeContainer />
         </Route>

@@ -6,13 +6,15 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
   Button,
+  Link,
 } from "@chakra-ui/react";
 import React from "react";
-import { BsBookmarkPlus } from "react-icons/bs";
-import { useDispatch } from "react-redux";
-import { signInWithGoogle } from "../Firebase/googleProvider";
 
-function AlertModal({ size }) {
+import { useDispatch } from "react-redux";
+
+import { signInWithGoogle } from "../../Firebase/googleProvider";
+
+function AlertModal() {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = React.useState(false);
   const onClose = () => setIsOpen(false);
@@ -21,11 +23,9 @@ function AlertModal({ size }) {
   return (
     <>
       {
-        <BsBookmarkPlus
-          size={size}
-          cursor="pointer"
-          onClick={() => setIsOpen(true)}
-        />
+        <Link as="h3" cursor="pointer" onClick={() => setIsOpen(true)}>
+          Bookmarks
+        </Link>
       }
 
       <AlertDialog
@@ -40,7 +40,7 @@ function AlertModal({ size }) {
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Sign in now to bookmark your favourite movies!
+              Sign in now to view your bookmarks!
             </AlertDialogBody>
 
             <AlertDialogFooter>

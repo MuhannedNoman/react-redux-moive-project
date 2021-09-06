@@ -24,6 +24,7 @@ import { allGenres } from "../../Redux/Slices/moviesFilterSlice";
 import { SearchIcon } from "@chakra-ui/icons";
 import SignIn from "./SignIn";
 import UserProfile from "./UserProfile";
+import AlertModal from "./Alert";
 // import { signInWithGoogle } from "../../Firebase/googleProvider";
 // import { FaGoogle } from "react-icons/fa";
 const imageUrl = "https://image.tmdb.org/t/p/w500/";
@@ -88,9 +89,13 @@ export default function NavBar() {
             Actors
           </Link>
 
-          <Link to="/bookmarks" as={ReachLink}>
-            Bookmarks
-          </Link>
+          {isLoggedIn ? (
+            <Link to="/bookmarks" as={ReachLink}>
+              Bookmarks
+            </Link>
+          ) : (
+            <AlertModal />
+          )}
         </HStack>
 
         <Menu>
@@ -127,8 +132,14 @@ export default function NavBar() {
           </MenuList>
         </Menu>
 
-        {isLoggedIn && <UserProfile />}
-        <SignIn />
+        {isLoggedIn && (
+          <HStack>
+            {" "}
+            <UserProfile />
+            <SignIn />
+          </HStack>
+        )}
+        {!isLoggedIn && <SignIn />}
       </Flex>
     </Box>
   );
