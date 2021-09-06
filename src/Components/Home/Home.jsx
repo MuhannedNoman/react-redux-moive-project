@@ -20,6 +20,8 @@ import {
   getTrendingMovies,
 } from "../../Redux/Slices/moviesSlice";
 import { FaImdb } from "react-icons/fa";
+
+import Bookmark from "../../Utilities/Bookmark";
 const imageUrl = "https://image.tmdb.org/t/p/w500/";
 export default function Home() {
   const [movieNum, setMovieNum] = useState({
@@ -67,8 +69,7 @@ export default function Home() {
       second: 5,
     });
   }, []);
-  console.log(newTrendingMovies);
-  console.log(newPopularMovies);
+
   return (
     <Box bg="black" minH="100vh" py="5" px="3">
       <Text
@@ -100,51 +101,60 @@ export default function Home() {
         {newPopularMovies
           .slice(movieNum.first, movieNum.second)
           .map((movie) => (
-            <LinkBox
-              as={ReachLink}
-              to={`/movies/movie/${movie.id}`}
+            <Flex
+              direction="column"
               key={movie.id}
-              _hover={{ transform: "scale(1.04)" }}
-              transition="ease-in-out 0.1s"
+              color="white"
+              bg="whiteAlpha.300"
+              boxShadow="lg"
+              // overflow="hidden"
+              w="15rem"
+              minH="100%"
+              position="relative"
             >
-              <Box
+              {" "}
+              <LinkBox
+                as={ReachLink}
+                to={`/movies/movie/${movie.id}`}
                 key={movie.id}
-                color="white"
-                bg="whiteAlpha.300"
-                boxShadow="lg"
-                overflow="hidden"
-                w="15rem"
-                minH="100%"
+                _hover={{ transform: "translateY(-20px)" }}
+                transition="ease-in-out 0.1s"
               >
                 <Image
                   objectFit="fill"
                   boxSize="15rem"
                   src={`${imageUrl}/${movie.poster_path}`}
                 />{" "}
-                <Box textAlign="center">
-                  <Text fontWeight="bold" fontSize="lg" as="h2">
-                    {" "}
-                    {movie.title}{" "}
-                  </Text>
-                  <VStack p="3">
-                    <HStack>
-                      {movie.genre_ids.map((id) => {
-                        return (
-                          <Text fontSize="small" key={id}>
-                            {" "}
-                            {id}{" "}
-                          </Text>
-                        );
-                      })}
-                    </HStack>
-                    <HStack spacing="1">
-                      <Icon color="#dc6208" boxSize={6} as={FaImdb} />{" "}
-                      <Badge> {movie.vote_average} </Badge>
-                    </HStack>
-                  </VStack>
+                <Text
+                  textAlign="center"
+                  fontWeight="bold"
+                  fontSize="lg"
+                  as="h2"
+                >
+                  {" "}
+                  {movie.title}{" "}
+                </Text>
+              </LinkBox>
+              <VStack p="3">
+                <HStack>
+                  {movie.genre_ids.map((id) => {
+                    return (
+                      <Text fontSize="small" key={id}>
+                        {" "}
+                        {id}{" "}
+                      </Text>
+                    );
+                  })}
+                </HStack>
+                <HStack spacing="1">
+                  <Icon color="#dc6208" boxSize={6} as={FaImdb} />{" "}
+                  <Badge> {movie.vote_average} </Badge>
+                </HStack>
+                <Box p="3" position="absolute" bottom="0" right="0">
+                  <Bookmark movie={movie} />
                 </Box>
-              </Box>{" "}
-            </LinkBox>
+              </VStack>
+            </Flex>
           ))}
         <IconButton
           alignSelf="center"
@@ -189,51 +199,57 @@ export default function Home() {
         {newTrendingMovies
           .slice(trendingNum.first, trendingNum.second)
           .map((movie) => (
-            <LinkBox
-              as={ReachLink}
-              to={`/movies/movie/${movie.id}`}
+            <Flex
+              direction="column"
               key={movie.id}
-              _hover={{ transform: "scale(1.04)" }}
-              transition="ease-in-out 0.1s"
+              color="white"
+              bg="whiteAlpha.300"
+              boxShadow="lg"
+              // overflow="hidden"
+              w="15rem"
+              minH="100%"
+              position="relative"
             >
-              <Box
+              <LinkBox
+                as={ReachLink}
+                to={`/movies/movie/${movie.id}`}
                 key={movie.id}
-                color="white"
-                bg="whiteAlpha.300"
-                boxShadow="lg"
-                overflow="hidden"
-                w="15rem"
-                minH="100%"
+                _hover={{ transform: "translateY(-20px)" }}
+                transition="ease-in-out 0.1s"
               >
                 <Image
                   objectFit="fill"
                   boxSize="15rem"
                   src={`${imageUrl}/${movie.poster_path}`}
                 />{" "}
-                <Box textAlign="center">
-                  <Text fontWeight="bold" fontSize="lg" as="h2">
-                    {" "}
-                    {movie.title}{" "}
-                  </Text>
-                  <VStack p="3">
-                    <HStack>
-                      {movie.genre_ids.map((id) => {
-                        return (
-                          <Text fontSize="small" key={id}>
-                            {" "}
-                            {id}{" "}
-                          </Text>
-                        );
-                      })}
-                    </HStack>
-                    <HStack spacing="1">
-                      <Icon color="#dc6208" boxSize={6} as={FaImdb} />{" "}
-                      <Badge> {movie.vote_average} </Badge>
-                    </HStack>
-                  </VStack>
-                </Box>
-              </Box>{" "}
-            </LinkBox>
+                <Text
+                  textAlign="center"
+                  fontWeight="bold"
+                  fontSize="lg"
+                  as="h2"
+                >
+                  {" "}
+                  {movie.title}{" "}
+                </Text>
+              </LinkBox>
+              <VStack p="3">
+                <HStack>
+                  {movie.genre_ids.map((id) => {
+                    return (
+                      <Text fontSize="small" key={id}>
+                        {" "}
+                        {id}{" "}
+                      </Text>
+                    );
+                  })}
+                </HStack>
+                <HStack spacing="1">
+                  <Icon color="#dc6208" boxSize={6} as={FaImdb} />{" "}
+                  <Badge> {movie.vote_average} </Badge>
+                </HStack>
+                <Bookmark movie={movie} />
+              </VStack>
+            </Flex>
           ))}
         <IconButton
           alignSelf="center"

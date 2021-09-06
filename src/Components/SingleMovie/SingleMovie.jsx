@@ -24,6 +24,7 @@ import {
   ArrowRightIcon,
   ExternalLinkIcon,
 } from "@chakra-ui/icons";
+import Bookmark from "../../Utilities/Bookmark";
 
 const imageUrl = "https://image.tmdb.org/t/p/w500/";
 export default function SingleMovie() {
@@ -75,6 +76,7 @@ export default function SingleMovie() {
             h="lg"
             src={`${imageUrl}/${movie.poster_path}`}
           />
+
           <Flex
             bg="whiteAlpha.500"
             color="white"
@@ -85,7 +87,9 @@ export default function SingleMovie() {
             w="50%"
             h="lg"
             boxShadow="lg"
+            position="relative"
           >
+            <Bookmark movie={movie} size={39} top="0" />
             <Stack borderBottom="#dc6208 solid 0.2rem">
               <Text fontWeight="bold" fontSize="4xl" flexBasis="20%">
                 {movie.original_title}

@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 
 import ActorContainer from "./Containers/ActorContainer/ActorContainer";
 import BookmarkContainer from "./Containers/BookmarkContainer/BookmarkContainer";
@@ -11,8 +11,16 @@ import SingleActorContainer from "./Containers/SingleActorContainer/SingleActorC
 import SingleMovieContainer from "./Containers/SingleMovieContainer/SingleMovieContainer";
 import { Route, Switch } from "react-router";
 import ScrollToTop from "./Utilities/ScrollToTop";
+import { useSelector } from "react-redux";
+// import { auth, db } from "./Firebase/Firebase";
+// import { doc, setDoc } from "firebase/firestore";
 
 function App() {
+  const bookmarks = useSelector((state) => state.bookmarks);
+  useEffect(() => {
+    console.log(bookmarks);
+  }, [bookmarks]);
+  // console.log(bookmarks);
   return (
     <div>
       <ScrollToTop />

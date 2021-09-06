@@ -20,6 +20,7 @@ import { moviesByGenre } from "../../Redux/Slices/moviesFilterSlice";
 import "./Movies.scss";
 import { FaImdb } from "react-icons/fa";
 import { Link as ReachLink } from "react-router-dom";
+import Bookmark from "../../Utilities/Bookmark";
 const imageUrl = "https://image.tmdb.org/t/p/w500/";
 export default function Movies() {
   const { genreId } = useParams();
@@ -61,21 +62,23 @@ export default function Movies() {
     >
       {newMovies.map((movie) => {
         return (
-          <LinkBox
-            as={ReachLink}
-            to={`/movies/movie/${movie.id}`}
+          <Flex
+            direction="column"
             key={movie.id}
+            color="white"
+            bg="whiteAlpha.300"
+            boxShadow="lg"
+            w="15rem"
             m="1rem"
-            _hover={{ transform: "scale(1.1)" }}
-            transition="ease-in-out 0.1s"
+            minH="100%"
+            position="relative"
           >
-            <Box
-              color="white"
-              bg="whiteAlpha.300"
-              boxShadow="lg"
-              overflow="hidden"
-              w="15rem"
-              minH="100%"
+            <LinkBox
+              as={ReachLink}
+              to={`/movies/movie/${movie.id}`}
+              key={movie.id}
+              _hover={{ transform: "translateY(-10px)" }}
+              transition="ease-in-out 0.1s"
             >
               {" "}
               <Image
@@ -90,24 +93,25 @@ export default function Movies() {
                   {movie.title}{" "}
                 </Text>
               </Box>
-              <VStack p="3">
-                <HStack>
-                  {movie.genre_ids.map((id) => {
-                    return (
-                      <Text fontSize="small" key={id}>
-                        {" "}
-                        {id}{" "}
-                      </Text>
-                    );
-                  })}
-                </HStack>
-                <HStack spacing="1">
-                  <Icon color="#dc6208" boxSize={6} as={FaImdb} />{" "}
-                  <Badge> {movie.vote_average} </Badge>
-                </HStack>
-              </VStack>
-            </Box>
-          </LinkBox>
+            </LinkBox>
+            <VStack p="3">
+              <HStack>
+                {movie.genre_ids.map((id) => {
+                  return (
+                    <Text fontSize="small" key={id}>
+                      {" "}
+                      {id}{" "}
+                    </Text>
+                  );
+                })}
+              </HStack>
+              <HStack spacing="1">
+                <Icon color="#dc6208" boxSize={6} as={FaImdb} />{" "}
+                <Badge> {movie.vote_average} </Badge>
+              </HStack>
+              <Bookmark movie={movie} />
+            </VStack>{" "}
+          </Flex>
         );
       })}
       {/* This is Movies Component

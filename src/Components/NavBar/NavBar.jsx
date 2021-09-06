@@ -22,6 +22,10 @@ import "./NavBar.scss";
 
 import { allGenres } from "../../Redux/Slices/moviesFilterSlice";
 import { SearchIcon } from "@chakra-ui/icons";
+import SignIn from "./SignIn";
+import UserProfile from "./UserProfile";
+// import { signInWithGoogle } from "../../Firebase/googleProvider";
+// import { FaGoogle } from "react-icons/fa";
 const imageUrl = "https://image.tmdb.org/t/p/w500/";
 export default function NavBar() {
   const genresList = useSelector((state) => state.moviesFilter.allGenres.list);
@@ -30,7 +34,7 @@ export default function NavBar() {
   useEffect(() => {
     dispatch(allGenres());
   }, []);
-
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   return (
     <Box
       borderBottom="#dc6208 solid 0.2rem"
@@ -88,6 +92,7 @@ export default function NavBar() {
             Bookmarks
           </Link>
         </HStack>
+
         <Menu>
           <MenuButton color="black" leftIcon={<SearchIcon />} as={Button}>
             Search
@@ -121,31 +126,10 @@ export default function NavBar() {
             ))}
           </MenuList>
         </Menu>
+
+        {isLoggedIn && <UserProfile />}
+        <SignIn />
       </Flex>
-      {/* This is The Header Component it should contain navigation, Login, Search
-      <ul>
-        <li>Include a Home button that moves the user to the home page.</li>
-        <li>
-          Include a Genre button that display a dropdown list of all movies
-          genre.
-        </li>
-        <li>Include a Actor button that moves the user to the Actors Page.</li>
-        <li>Include an About page that describes the website.</li>
-        <li>
-          Include a Bookmarked button that displays the movies user wanted to
-          bookmark
-        </li>
-        <li>
-          Include Sign In button that displays a modal for the user to Sign in
-          using Google. Once the use is logged in display their name and avatar.
-        </li>
-        <br />
-        only show in home:
-        <li>
-          In Home page show a filter based on popular, release date, top rated,
-          now playing, and upcoming
-        </li>
-      </ul> */}
     </Box>
   );
 }
