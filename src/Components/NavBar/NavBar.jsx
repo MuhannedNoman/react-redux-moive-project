@@ -24,6 +24,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import SignIn from "./SignIn";
 import UserProfile from "./UserProfile";
 import AlertModal from "./Alert";
+import { emptySearchValue } from "../../Redux/Slices/searchSlice";
 // import { signInWithGoogle } from "../../Firebase/googleProvider";
 // import { FaGoogle } from "react-icons/fa";
 const imageUrl = "https://image.tmdb.org/t/p/w500/";
@@ -55,6 +56,52 @@ export default function NavBar() {
             TMDB
           </Text>
         </Link>
+        <Menu>
+          <MenuButton
+            bg="transparent"
+            color="white"
+            leftIcon={<SearchIcon />}
+            as={Button}
+            _hover={{ background: "transparent" }}
+            _active={{ background: "transparent" }}
+            outline="none"
+            border="none"
+          >
+            Search
+          </MenuButton>
+          <MenuList p="3" bg="black" w="25rem">
+            <MenuInput />
+            <MenuDivider />
+            {searchResults.slice(0, 4).map((movie) => (
+              <Link
+                to={`/movies/movie/${movie.id}`}
+                as={ReachLink}
+                _hover={{ textDecoration: "none", color: "gray" }}
+                key={movie.id}
+              >
+                <MenuItem
+                  p="0"
+                  my="1"
+                  _hover={{ background: "none", textDecoration: "none" }}
+                >
+                  <Flex
+                    w="100%"
+                    my="2"
+                    onClick={() => dispatch(emptySearchValue())}
+                  >
+                    <Image
+                      boxSize="5rem"
+                      src={`${imageUrl}/${movie.poster_path}`}
+                    />
+                    <Box p="4" w="100%" bg="whiteAlpha.300">
+                      <Text as="h1">{movie.title}</Text>
+                    </Box>
+                  </Flex>{" "}
+                </MenuItem>
+              </Link>
+            ))}
+          </MenuList>
+        </Menu>
 
         <HStack fontSize="lg" spacing="5">
           <Link borderRadius="30px" to="/" as={ReachLink}>
@@ -94,40 +141,6 @@ export default function NavBar() {
             <AlertModal />
           )}
         </HStack>
-
-        <Menu>
-          <MenuButton color="black" leftIcon={<SearchIcon />} as={Button}>
-            Search
-          </MenuButton>
-          <MenuList p="3" bg="black" w="25rem">
-            <MenuInput />
-            <MenuDivider />
-            {searchResults.slice(0, 4).map((movie) => (
-              <Link
-                to={`/movies/movie/${movie.id}`}
-                as={ReachLink}
-                _hover={{ textDecoration: "none", color: "gray" }}
-                key={movie.id}
-              >
-                <MenuItem
-                  p="0"
-                  my="1"
-                  _hover={{ background: "none", textDecoration: "none" }}
-                >
-                  <Flex w="100%" my="2">
-                    <Image
-                      boxSize="5rem"
-                      src={`${imageUrl}/${movie.poster_path}`}
-                    />
-                    <Box p="4" w="100%" bg="whiteAlpha.300">
-                      <Text as="h1">{movie.title}</Text>
-                    </Box>
-                  </Flex>{" "}
-                </MenuItem>
-              </Link>
-            ))}
-          </MenuList>
-        </Menu>
 
         {isLoggedIn && (
           <HStack>

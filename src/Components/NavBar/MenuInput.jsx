@@ -28,6 +28,7 @@ const MenuInput = (props) => {
         value={searchValue}
         onChange={(e) => dispatch(setSearchValue(e.target.value))}
         size="md"
+        autoComplete="false"
         {...rest}
         onKeyDown={(e) => {
           if (!navigationKeys.includes(e.key)) {

@@ -29,6 +29,9 @@ const searchSlice = createSlice({
     emptySearchResults(state) {
       state.searchResult.list = [];
     },
+    emptySearchValue(state) {
+      state.searchValue = "";
+    },
   },
   extraReducers: {
     [getSearchResult.pending]: (state) => {
@@ -43,5 +46,6 @@ const searchSlice = createSlice({
     },
   },
 });
-export const { setSearchValue, emptySearchResults } = searchSlice.actions;
+export const { setSearchValue, emptySearchResults, emptySearchValue } =
+  searchSlice.actions;
 export default searchSlice.reducer;
