@@ -1,6 +1,6 @@
 import { Box, Button } from "@chakra-ui/react";
 import React from "react";
-import { BiLogOut } from "react-icons/bi";
+import { FiLogOut } from "react-icons/fi";
 import { FaGoogle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { signInWithGoogle } from "../../Firebase/googleProvider";
@@ -27,9 +27,11 @@ function SignIn() {
   ) : (
     <Box>
       <Button
-        leftIcon={<BiLogOut />}
         onClick={handleSignOut}
         colorScheme="white"
+        rightIcon={<FiLogOut />}
+        fontWeight="semibold"
+        fontSize="sm"
       >
         Sign Out
       </Button>
