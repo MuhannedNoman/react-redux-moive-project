@@ -41,12 +41,14 @@ export default function SingleActor() {
       second: 5,
     });
   }, [actorId]);
-  if (actorMoviesStatus !== "success" && actorStatus !== "success")
+
+  if (actorMoviesStatus !== "success" || actorStatus !== "success")
     return (
       <Stack align="center" justify="center" bg="black" h="100vh">
         <Spinner size="xl" color="white" />
       </Stack>
     );
+
   return (
     <Box p="6" bg="black" minH="100vh">
       <Flex direction={["column,row,row,row"]}>
@@ -85,7 +87,7 @@ export default function SingleActor() {
           </Stack>
           <Stack overflow="hidden" justify="space-evenly" flexBasis="80%">
             <Text p="5" fontWeight="semibold" fontSize="lg" color="white">
-              {actor.biography.slice(0, 1000)}
+              {actor.biography !== "" && actor.biography?.slice(0, 1000)}
             </Text>{" "}
           </Stack>
         </Flex>

@@ -12,13 +12,13 @@ import { useSelector } from "react-redux";
 import { Spinner, Stack } from "@chakra-ui/react";
 
 function App() {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const MoviesContainer = React.lazy(() =>
     import("./Containers/MoviesContainer/MoviesContainer")
   );
   const ActorContainer = React.lazy(() =>
     import("./Containers/ActorContainer/ActorContainer")
   );
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   return (
     <Suspense

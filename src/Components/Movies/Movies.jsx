@@ -36,12 +36,12 @@ export default function Movies() {
 
   // get genre names instead of id's
 
-  const newMovies = movies.map((movie) => {
+  const newMovies = movies?.map((movie) => {
     const newIds = movie.genre_ids?.map((id) => {
       const genre = genres?.find((genre) => {
         return genre?.id === id;
       });
-      return genre.name;
+      return genre?.name;
     });
 
     return { ...movie, genre_ids: newIds };

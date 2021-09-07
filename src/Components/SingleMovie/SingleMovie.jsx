@@ -57,8 +57,8 @@ export default function SingleMovie() {
     });
   }, [movieId]);
   if (
-    actorsStatus !== "success" &&
-    similarMovsStatus !== "success" &&
+    actorsStatus !== "success" ||
+    similarMovsStatus !== "success" ||
     movieStatus !== "success"
   )
     return (

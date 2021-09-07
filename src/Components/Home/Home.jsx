@@ -44,22 +44,22 @@ export default function Home() {
   const trendingMoviesStatus = useSelector(
     (state) => state.movies.trending.status
   );
-  const newPopularMovies = popularMovies.map((movie) => {
-    const newIds = movie.genre_ids.map((id) => {
-      const genre = genres?.find((genre) => {
-        return genre.id === id;
-      });
-      return genre.name;
-    });
-
-    return { ...movie, genre_ids: newIds };
-  });
-  const newTrendingMovies = trendingMovies.map((movie) => {
+  const newPopularMovies = popularMovies?.map((movie) => {
     const newIds = movie.genre_ids.map((id) => {
       const genre = genres?.find((genre) => {
         return genre?.id === id;
       });
-      return genre.name;
+      return genre?.name;
+    });
+
+    return { ...movie, genre_ids: newIds };
+  });
+  const newTrendingMovies = trendingMovies?.map((movie) => {
+    const newIds = movie.genre_ids.map((id) => {
+      const genre = genres?.find((genre) => {
+        return genre?.id === id;
+      });
+      return genre?.name;
     });
 
     return { ...movie, genre_ids: newIds };
@@ -172,7 +172,7 @@ export default function Home() {
           alignSelf="center"
           icon={<ArrowRightIcon />}
           onClick={() => {
-            if (popularMovies.length >= movieNum.second)
+            if (popularMovies.length > movieNum.second)
               setMovieNum((prevNum) => {
                 return {
                   first: prevNum.first + 5,
@@ -267,7 +267,7 @@ export default function Home() {
           alignSelf="center"
           icon={<ArrowRightIcon />}
           onClick={() => {
-            if (trendingMovies.length >= trendingNum.second)
+            if (trendingMovies.length > trendingNum.second)
               setTrendingNum((prevNum) => {
                 return {
                   first: prevNum.first + 5,
