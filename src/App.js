@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import requests from "./reuqests/requests";
 // import Row from "./components/Row";
 // import Slider from "./containers/Slider";
-import { fetchMovies } from "./api/imdbApi";
+import { movies as moviesApi } from "./api/tmdbApi";
 
 function App() {
   // const { loading, setQuery, setLoading } = useFetch();
@@ -19,13 +19,13 @@ function App() {
   // }
 
   const dispatch = useDispatch();
-  const imdb = useSelector((state) => state.imdb);
+  const tmdb = useSelector((state) => state.tmdb);
 
   useEffect(() => {
-    dispatch(fetchMovies());
+    dispatch(moviesApi.fetch({ genre: 28 }));
   }, [dispatch]);
 
-  console.log(imdb);
+  console.log(tmdb);
 
   return (
     <div>
