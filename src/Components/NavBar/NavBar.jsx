@@ -112,22 +112,25 @@ export default function NavBar() {
           <Menu>
             <MenuButton>Movies</MenuButton>
             <MenuList bg="black" h="15rem" overflow="auto" fontSize="md">
-              {genresList.map((genre) => (
-                <LinkBox
-                  key={genre.id}
-                  to={`/movies/${genre.id}`}
-                  as={ReachLink}
-                >
-                  <MenuItem
-                    bg="whiteAlpha.300"
-                    _hover={{ background: "whiteAlpha.500" }}
-                    color="white"
-                    key={genre.id}
-                  >
-                    {genre.name}{" "}
-                  </MenuItem>
-                </LinkBox>
-              ))}
+              {genresList.map(
+                (genre) =>
+                  genre.name !== "Documentary" && (
+                    <LinkBox
+                      key={genre.id}
+                      to={`/movies/${genre.id}`}
+                      as={ReachLink}
+                    >
+                      <MenuItem
+                        bg="whiteAlpha.300"
+                        _hover={{ background: "whiteAlpha.500" }}
+                        color="white"
+                        key={genre.id}
+                      >
+                        {genre.name}{" "}
+                      </MenuItem>
+                    </LinkBox>
+                  )
+              )}
             </MenuList>
           </Menu>
           <Link to="/actors" as={ReachLink}>
