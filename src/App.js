@@ -1,62 +1,34 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 // import SearchInput from "./components/SearchInput";
 // import useFetch from "./hooks/useFetch";
 // import requests from "./reuqests/requests";
 // import Row from "./components/Row";
 // import Slider from "./containers/Slider";
-import { movies as moviesApi } from "./api/tmdbApi";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import About from "./pages/about";
+import home from "./pages/home";
+import actors from "./pages/actors";
+import ActorDetail from "./components/ActorDetail";
+import Error from "./components/Error";
+import GenresPage from "./pages/genres";
 
 function App() {
-  // const { loading, setQuery, setLoading } = useFetch();
-  // const { loading } = useFetch();
-
-  // function queryHandler(q) {
-  //   setQuery(q);
-  // }
-  // function loadingHandler(l) {
-  //   setLoading(l);
-  // }
-
-  const dispatch = useDispatch();
-  const tmdb = useSelector((state) => state.tmdb);
-
-  useEffect(() => {
-    dispatch(moviesApi.fetch({ genre: 28 }));
-  }, [dispatch]);
-
-  console.log(tmdb);
-
   return (
     <div>
-      {/* <SearchInput
-        queryHandler={queryHandler}
-        loadingHandler={loadingHandler}
-      /> */}
-      {/* <Slider fetchUrl={requests.fetchComedyMovies} /> */}
-      {/* <Row
-        title="Netflix Originals"
-        fetchUrl={requests.fetchNetflixOriginals}
-        isLarge
-      />
-      <Row
-        title="Trending"
-        fetchUrl={requests.fetchTrending}
-        isLarge
-        isLoading={loading}
-      />
-      <Row
-        title="Top Rated"
-        fetchUrl={requests.fetchTopRated}
-        isLarge
-        isLoading={loading}
-      />
-      <Row
-        title="Action"
-        fetchUrl={requests.fetchActionMovies}
-        isLarge
-        isLoading={loading}
-      /> */}
+      <Navbar />
+      {/* <Genres /> */}
+      {/* <Row fetchUrl={requests.fetchTrending} /> */}
+      <Switch>
+        <Route path="/genre" component={GenresPage} />
+        <Route path="/about" component={About} />
+        <Route path="/actors/:id" component={ActorDetail} />
+        <Route path="/actors" exact component={actors} />
+        <Route path="/" exact component={home} />
+        <Route component={Error} />
+      </Switch>
+      <Footer />
     </div>
   );
 }

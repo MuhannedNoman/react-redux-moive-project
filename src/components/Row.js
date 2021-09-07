@@ -4,15 +4,16 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { Skeleton, Progress } from "antd";
 
-function Row({ title, fetchUrl, isLarge, isLoading }) {
+function Row({ title, fetchUrl, isLarge }) {
   const [movie, setMovie] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+
   const posterBaseUrl = "https://image.tmdb.org/t/p/original";
 
   Row.propTypes = {
     title: PropTypes.string.isRequired,
     fetchUrl: PropTypes.string.isRequired,
     isLarge: PropTypes.bool.isRequired,
-    isLoading: PropTypes.bool.isRequired,
   };
 
   const instance = axios.create({
@@ -20,9 +21,11 @@ function Row({ title, fetchUrl, isLarge, isLoading }) {
   });
 
   useEffect(() => {
+    setisLoading(true);
     async function fetchData() {
       const response = await instance.get(fetchUrl);
       setMovie(response.data.results);
+      setisLoading(false);
     }
 
     fetchData();
@@ -37,7 +40,7 @@ function Row({ title, fetchUrl, isLarge, isLoading }) {
         <Skeleton />
       ) : (
         <div className="poster_path">
-          {movie.map((m) => (
+          {movie?.map((m) => (
             <div className="card_wrapper">
               <img
                 key={m.id}
