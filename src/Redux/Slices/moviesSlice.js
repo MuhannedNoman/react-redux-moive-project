@@ -42,7 +42,7 @@ export const movieDetails = createAsyncThunk(
   async (id) => {
     return axios
       .get(
-        `http://api.themoviedb.org/3/movie/${id}?api_key=e8fe6c13def75cda44726ea251c4fb8c&append_to_response=videos`
+        `https://api.themoviedb.org/3/movie/${id}?api_key=e8fe6c13def75cda44726ea251c4fb8c&append_to_response=videos`
       )
       .then((response) => {
         return response.data;
