@@ -26,21 +26,13 @@ function ActorDetail({ match }) {
   console.log(actor, loading);
 
   return (
-    <div>
-      <h1>Actor Detail</h1>
+    <div style={{ color: "white", textAlign: "center" }}>
+      <h1 style={{ color: "white" }}>Actor Detail</h1>
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            color: "white",
-            margin: "0 100px",
-            fontSize: "1rem",
-          }}
-        >
-          <h1>{actor.name}</h1>
+        <div>
+          <h1 style={{ color: "white" }}>{actor.name}</h1>
           <small>{actor.place_of_birth}</small>
           <Switch
             style={{ display: "none" }}
@@ -49,20 +41,14 @@ function ActorDetail({ match }) {
               setEllipsis(!ellipsis);
             }}
           />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(200px,1fr))",
-            }}
-          >
+          <div style={{ display: "flex" }}>
             <img
               style={{
-                marginRight: "20px",
                 borderRadius: "10px",
-                boxShadow: "5px 5px 3px #eee",
-                maxWidth: "100%",
+                boxShadow: "5px 5px 3px black",
+                width: "20%",
                 height: "auto",
-                display: "block",
+                objectFit: "cover",
               }}
               src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
               alt={actor.name}
@@ -79,7 +65,7 @@ function ActorDetail({ match }) {
                   : false
               }
             >
-              {actor.biography}
+              {actor?.biography}
             </Paragraph>
           </div>
         </div>

@@ -13,6 +13,8 @@ import actors from "./pages/actors";
 import ActorDetail from "./components/ActorDetail";
 import Error from "./components/Error";
 import GenresPage from "./pages/genres";
+import signup from "./pages/signup";
+import login from "./pages/login";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
       {/* <Genres /> */}
       {/* <Row fetchUrl={requests.fetchTrending} /> */}
       <Switch>
+        <Route path="/login" component={login} />
+        <Route path="/signup" component={signup} />
         <Route path="/genre" component={GenresPage} />
         <Route path="/about" component={About} />
         <Route path="/actors/:id" component={ActorDetail} />

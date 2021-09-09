@@ -8,11 +8,11 @@ function Error() {
   return (
     <div style={{ textAlign: "center", color: "white" }}>
       <img style={{ width: "50vw", height: "50vh" }} src={error} alt="404" />
-      <h3>Page Not Found</h3>
+      <h3 style={{ color: "white" }}>Page Not Found</h3>
       <p>You might find more here</p>
       <Link to="/">Home</Link>
-
       <Link to="/about">About</Link>
+      <Link to="/actors">Actors</Link>
     </div>
   );
 }

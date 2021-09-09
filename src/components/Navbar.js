@@ -1,37 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu } from "antd";
 import {
   HomeTwoTone,
   SmileTwoTone,
   QuestionCircleTwoTone,
   ContainerTwoTone,
+  SettingTwoTone,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-// import Genres from "./Genres";
+import { auth } from "../firebase/firebase";
 
 const { SubMenu } = Menu;
 
 function Navbar() {
   const [current, setCurrent] = useState("mail");
-  // const [genre, setGenre] = useState([]);
-  // const [type, setType] = useState();
-  // const [isLoading, setIsLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState([]);
 
-  // const URL = `https://api.themoviedb.org/3/discover/movie?api_key=e15bbb219d7a04f817488309f7efe37f&with_genres=${type}`;
+  useEffect(() => {
+    const subscribe = auth.onAuthStateChanged((user) => {
+      console.log("user:", user);
+      setCurrentUser(user);
+    });
 
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   fetch(URL)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setGenre(data.results);
-  //       setIsLoading(false);
-  //     });
-  // }, [URL, type]);
+    return subscribe;
+  }, []);
 
-  // console.log(genre);
-
-  // console.log(URL);
+  console.log("navbar currentUser:", currentUser);
 
   const handleClick = (e) => {
     setCurrent(e.key);
@@ -85,6 +79,25 @@ function Navbar() {
             </Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
+        <SubMenu
+          style={{ color: "white" }}
+          key="User"
+          icon={<SettingTwoTone />}
+          title="User"
+        >
+          <Menu.ItemGroup
+            title={`${currentUser ? currentUser?.email : "Default User"}`}
+          />
+          <Menu.Item key="setting:2">
+            <Link to="/login">Log In</Link>
+          </Menu.Item>
+
+          <Menu.Item key="setting:3">
+            <Link to="/signup">Sign Up</Link>
+          </Menu.Item>
+        </SubMenu>
+        {/* {currentUser && currentUser?.email} */}
+        {/* <button type="button">Log Out</button> */}
       </Menu>
     </div>
   );
