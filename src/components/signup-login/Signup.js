@@ -81,7 +81,11 @@ function Signup() {
           <h1 style={{ color: "white" }}>
             You are already logged in as {currentUser.email}
           </h1>
-          <button type="button" onClick={() => auth.signOut()} className="fill">
+          <button
+            type="button"
+            onClick={() => auth.signOut()}
+            className="logout"
+          >
             Logout
           </button>
         </div>

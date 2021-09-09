@@ -73,10 +73,14 @@ function Login() {
     >
       {currentUser ? (
         <div>
-          <h3 style={{ color: "white" }}>
+          <h1 style={{ color: "white" }}>
             You are logged in as {currentUser.email}
-          </h3>
-          <button type="button" onClick={() => auth.signOut()} className="fill">
+          </h1>
+          <button
+            type="button"
+            onClick={() => auth.signOut()}
+            className="logout"
+          >
             Logout
           </button>
         </div>

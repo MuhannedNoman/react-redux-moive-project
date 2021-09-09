@@ -1,4 +1,4 @@
-.fill {
+.logout {
   font-size: 20px;
   font-weight: 200;
   letter-spacing: 1px;
@@ -9,10 +9,9 @@
   position: relative;
   background-color: rgba(0, 0, 0, 0);
   color: rgb(255, 255, 255);
-  margin: 100px;
 }
 
-.fill::after {
+.logout::after {
   content: "";
   background-color: #dd1e4e;
   width: 100%;
@@ -24,7 +23,7 @@
   transition: 0.2s;
 }
 
-.fill:hover::after {
+.logout:hover::after {
   top: 0px;
   left: 0px;
 }
