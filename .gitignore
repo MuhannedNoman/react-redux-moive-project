@@ -11,6 +11,9 @@
 # production
 /build
 
+# compiled css file
+/src/style/css/custom.min.css
+
 # misc
 .DS_Store
 .env.local
