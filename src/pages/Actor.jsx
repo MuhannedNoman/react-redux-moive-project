@@ -1,6 +1,6 @@
 import React from 'react'
 
-const actor = () => {
+const Actor = () => {
   return (
     <div>actor</div>
   )
