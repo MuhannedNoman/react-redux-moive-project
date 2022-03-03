@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getPosts = createAsyncThunk(
+export const getMostPopular = createAsyncThunk(
   "mostPopularSlice/getPosts",
   async () => {
     return fetch(
@@ -16,14 +16,14 @@ const mostPopularSlice = createSlice({
     status: null,
   },
   extraReducers: {
-    [getPosts.pending]: (state) => {
+    [getMostPopular.pending]: (state) => {
       state.status = "loading";
     },
-    [getPosts.fulfilled]: (state, { payload }) => {
+    [getMostPopular.fulfilled]: (state, { payload }) => {
       state.list = payload;
       state.status = "success";
     },
-    [getPosts.rejected]: (state) => {
+    [getMostPopular.rejected]: (state) => {
       state.status = "failed";
     },
   },
