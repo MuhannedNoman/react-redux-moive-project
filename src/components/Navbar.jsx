@@ -5,7 +5,7 @@ import {Nav} from 'react-bootstrap';
 import {NavDropdown} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import "../index.css";
-import logo from "../netflix-logo.png";
+
 
 
 const NavBar = () => {
@@ -14,13 +14,7 @@ const NavBar = () => {
       <Navbar fixed="top" bg="dark" variant="primary" expand="lg" className="nav">
         <Container>
           <Navbar.Brand href="#home">
-           <img
-              src={logo}
-              width="215"
-              height="50"
-              className="d-inline-block align-top"
-              alt="netflix-logo"
-            />
+          
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
           <Navbar.Collapse id="responsive-navbar-nav">
