@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import movieReducer from "./features/movies";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const store = configureStore({
   reducer: {

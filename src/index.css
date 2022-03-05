@@ -5,9 +5,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.nav-link{
+  font-family: 'Roboto', sans-serif;
+  color: #ffffff !important;
+  font-size: larger;
+  margin-left: 25px;
+}
+
+.nav-link:hover {
+  color: red !important; 
+  }
+
+.button {
+  background-color: red !important;
+}  
+
+.button:hover {
+  background-color:#dd0a35!important;
+} 
+
