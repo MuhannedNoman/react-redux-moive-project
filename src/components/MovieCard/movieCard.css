@@ -6,3 +6,14 @@
   text-overflow: ellipsis;
   display: -webkit-box;
 }
+
+a.movie-card {
+  color: #232323;
+  text-decoration: none;
+  transition: 250ms;
+}
+
+a.movie-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.25rem 0.5rem rgb(0 0 0 / 8%);
+}
