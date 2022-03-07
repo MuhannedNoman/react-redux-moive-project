@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Center, Image, Flex, Badge, Text } from "@chakra-ui/react";
 import { MdStar } from "react-icons/md";
 
-const MovieCard = ({ title, vote_average, poster_path }) => {
+const Card = ({ title, vote_average, poster_path }) => {
   return (
     <Box
       maxW="180px"
@@ -40,4 +40,4 @@ const MovieCard = ({ title, vote_average, poster_path }) => {
   );
 };
 
-export default MovieCard;
+export default Card;

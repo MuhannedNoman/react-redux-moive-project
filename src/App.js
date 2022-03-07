@@ -2,16 +2,16 @@ import "./App.css";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import Navbar from "./components/Navbar";
-import MovieList from "./components/MovieList";
 import Slider from "./components/Slider";
 import Footer from "./components/Footer";
+import TrendingMovies from "./components/TrendingMovies";
 
 function App() {
   return (
     <ChakraProvider>
       <Navbar />
       <Slider />
-      <MovieList />
+      <TrendingMovies />
       <Footer />
     </ChakraProvider>
   );
