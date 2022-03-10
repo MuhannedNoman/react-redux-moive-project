@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPopularMovies, getTrendMovies } from '../store/movieSlice'
-import { Card } from 'react-bootstrap'
-import { IMG_URL } from '../constants'
-import { FaAngleRight, FaAngleLeft } from 'react-icons/fa'
+import CardTemplate from '../components/CardTemplate'
+import CardSlider from '../components/CardSlider'
 
 const Home = () => {
   const dispatch = useDispatch()
-  const { popularMovieList, status } = useSelector(
-    (state) => state.movies.popular
-  )
-
+  const { popularMovieList } = useSelector((state) => state.movies.popular)
   const trendMovies = useSelector((state) => state.movies.trends.trendMovieList)
 
   const [currentPopularMovies, setCurrentPopularMovies] = useState({
@@ -31,7 +27,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Popular Movies</h1>
+      <h1 style={{ marginTop: '2rem' }}>Popular Movies</h1>
       <div
         style={{
           display: 'flex',
@@ -41,73 +37,23 @@ const Home = () => {
           alignItems: 'center',
         }}
       >
-        {status === 'loading' ? (
-          <h1>Loading...</h1>
-        ) : (
-          popularMovieList
-            .slice(currentPopularMovies.before, currentPopularMovies.after)
-            .map((movie) => (
-              <Card
-                key={movie.id}
-                style={{
-                  paddingTop: '5px',
-                  border: '1px solid #ccc',
-                  width: '18rem',
-                  marginRight: '5px',
-                }}
-              >
-                <Card.Img
-                  style={{ width: '8rem' }}
-                  variant='top'
-                  src={`${IMG_URL}/${movie.poster_path}`}
-                />
-                <Card.Body>
-                  <Card.Title style={{ fontSize: '14px' }}>
-                    {movie.title}
-                  </Card.Title>
-                  <Card.Text style={{ fontSize: '11px', fontWeight: 'bold' }}>
-                    {movie.vote_average}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            ))
-        )}
-        <FaAngleLeft
-          onClick={() => {
-            currentPopularMovies.before !== 0 &&
-              setCurrentPopularMovies((preValue) => {
-                return {
-                  before: preValue.before - 5,
-                  after: preValue.after - 5,
-                }
-              })
-          }}
-          style={{
-            cursor: 'pointer',
-            position: 'absolute',
-            left: '2rem',
-            fontSize: '29px',
-          }}
-        />
-        <FaAngleRight
-          onClick={() => {
-            popularMovieList.length > currentPopularMovies.after &&
-              setCurrentPopularMovies((preValue) => {
-                return {
-                  before: preValue.before + 5,
-                  after: preValue.after + 5,
-                }
-              })
-          }}
-          style={{
-            cursor: 'pointer',
-            position: 'absolute',
-            right: '2rem',
-            fontSize: '29px',
-          }}
+        {popularMovieList
+          .slice(currentPopularMovies.before, currentPopularMovies.after)
+          .map((movie) => (
+            <CardTemplate
+              imageSrc={movie.poster_path}
+              title={movie.title}
+              text={movie.vote_average}
+              key={movie.id}
+            />
+          ))}
+        <CardSlider
+          Arrayy={popularMovieList}
+          currentState={currentPopularMovies}
+          setCurrentState={setCurrentPopularMovies}
         />
       </div>
-      <h1>Trend Movies</h1>
+      <h1 style={{ marginTop: '2rem' }}>Trend Movies</h1>
       <div
         style={{
           display: 'flex',
@@ -117,67 +63,20 @@ const Home = () => {
           alignItems: 'center',
         }}
       >
-        {}
         {trendMovies
           .slice(currentTrendMovies.before, currentTrendMovies.after)
           .map((movie) => (
-            <Card
+            <CardTemplate
+              imageSrc={movie.poster_path}
+              title={movie.title}
+              text={movie.vote_average}
               key={movie.id}
-              style={{
-                paddingTop: '5px',
-                border: '1px solid #ccc',
-                width: '18rem',
-                marginRight: '5px',
-              }}
-            >
-              <Card.Img
-                style={{ width: '8rem' }}
-                variant='top'
-                src={`${IMG_URL}/${movie.poster_path}`}
-              />
-              <Card.Body>
-                <Card.Title style={{ fontSize: '14px' }}>
-                  {movie.title}
-                </Card.Title>
-                <Card.Text style={{ fontSize: '11px', fontWeight: 'bold' }}>
-                  {movie.vote_average}
-                </Card.Text>
-              </Card.Body>
-            </Card>
+            />
           ))}
-        <FaAngleLeft
-          onClick={() => {
-            currentTrendMovies.before !== 0 &&
-              setCurrentTrendMovies((preValue) => {
-                return {
-                  before: preValue.before - 5,
-                  after: preValue.after - 5,
-                }
-              })
-          }}
-          style={{
-            cursor: 'pointer',
-            position: 'absolute',
-            left: '2rem',
-            fontSize: '29px',
-          }}
-        />
-        <FaAngleRight
-          onClick={() => {
-            trendMovies.length > currentTrendMovies.after &&
-              setCurrentTrendMovies((preValue) => {
-                return {
-                  before: preValue.before + 5,
-                  after: preValue.after + 5,
-                }
-              })
-          }}
-          style={{
-            cursor: 'pointer',
-            position: 'absolute',
-            right: '2rem',
-            fontSize: '29px',
-          }}
+        <CardSlider
+          Arrayy={trendMovies}
+          currentState={currentTrendMovies}
+          setCurrentState={setCurrentTrendMovies}
         />
       </div>
     </div>

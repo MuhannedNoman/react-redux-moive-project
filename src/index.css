@@ -6,8 +6,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+* {
+  margin: 0;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.card_hover_effect {
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+.card_hover_effect:hover {
+  transform: scale(1.05);
+}
+.grid_actor_container {
+  margin: 0 auto;
+  padding: 0 25px;
+  display: grid;
+  gap: 15px;
+  grid-template-rows: 450px;
+  grid-template-columns: 340px 1fr 340px;
 }
