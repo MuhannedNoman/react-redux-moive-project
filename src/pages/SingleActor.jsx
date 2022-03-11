@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import CardSlider from '../components/CardSlider'
 
@@ -110,22 +111,30 @@ const SingleActor = () => {
               actorMovies.cast
                 .slice(currentMovieNumber.before, currentMovieNumber.after)
                 .map((movie) => (
-                  <Col
-                    className='card_hover_effect'
-                    style={{
-                      margin: '2rem  5px 1rem',
-                      border: '1px solid #ccc',
-                    }}
+                  <Link
+                    style={{ textDecoration: 'none' }}
                     key={movie.id}
+                    to={`/movies/movie/${movie.id}`}
                   >
-                    <img
-                      style={{ width: '15rem', height: '15rem' }}
-                      src={`${imageUrl}/${movie.poster_path}`}
-                    />
-                    <h4 style={{ color: 'black', width: '15rem' }}>
-                      {movie.title}
-                    </h4>
-                  </Col>
+                    <Col
+                      className='card_hover_effect'
+                      style={{
+                        margin: '2rem  5px 1rem',
+                        border: '1px solid #ccc',
+                      }}
+                    >
+                      <img
+                        alt='actor.png'
+                        style={{ width: '15rem', height: '15rem' }}
+                        src={`${imageUrl}/${movie.poster_path}`}
+                      />
+                      <h4 style={{ color: 'black', width: '15rem' }}>
+                        {movie.title.length > 25
+                          ? movie.title.slice(0, 25) + '...'
+                          : movie.title}
+                      </h4>
+                    </Col>
+                  </Link>
                 ))}
             <div style={{ alignSelf: 'center' }}>
               <CardSlider
